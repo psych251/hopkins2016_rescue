@@ -1,6 +1,6 @@
 ---
-title: "Replication of Study X by Sample & Sample (20xx, Psychological Science)"
-author: "Replication Author[s] (contact information)"
+title: "Replication of Study 1 by Hopkins, Weisberg, and Taylor (2016, Cognition)"
+author: "Howard Chiu (howardchiu@stanford.edu)"
 date: "`r format(Sys.time(), '%B %d, %Y')`"
 format:
   html:
@@ -12,12 +12,35 @@ format:
 
 ## Introduction
 
-[No abstract is needed.]  Each replication project will have a straightforward, no frills report of the study and results.  These reports will be publicly available as supplementary material for the aggregate report(s) of the project as a whole.  Also, to maximize project integrity, the intro and methods will be written and critiqued in advance of data collection.  Introductions can be just 1-2 paragraphs clarifying the main idea of the original study, the target finding for replication, and any other essential information.  It will NOT have a literature review -- that is in the original publication. You can write both the introduction and the methods in past tense.  
+<!-- [No abstract is needed.]  Each replication project will have a straightforward, no frills report of the study and results.  These reports will be publicly available as supplementary material for the aggregate report(s) of the project as a whole.  Also, to maximize project integrity, the intro and methods will be written and critiqued in advance of data collection.  Introductions can be just 1-2 paragraphs clarifying the main idea of the original study, the target finding for replication, and any other essential information.  It will NOT have a literature review -- that is in the original publication. You can write both the introduction and the methods in past tense. -->  
 
+### Research Interests
+I am currently a first-year PhD Student in the Graduate School of Education in the Developmental and Psychological Sciences program, and I am interested in using transdiagnostic longitudinal neuroimaging methods to understand the developmental trajectories of individuals within and across functional areas, so as to better understand how neural development relates to educational and other well-being outcomes.
+
+This paper, and the seductive allure effect in general, is relevant to my interest in communicating scientific findings precisely and concisely. I might also be susceptible to this very effect in my own desire for explanations as I pivot from working as a school psychologist to neuroscience research as a PhD student.
+
+### Description of stimuli and procedures
+The original study aimed to investigate whether participants would prefer reductive explanations and whether this would differ by the science of the phenomenon. Horizontal explanations were defined as referring "only to the science from which the phenomenon itself was drawn (e.g., using biological language to explain a biological phenomenon)", while reductive explanations were defined as explanations which "included information from the next lower level in the hierarchy (e.g., using chemical language to explain a biological phenomenon)".
+
+Participants were presented with horizontal and reductive explanations of phenomenon in 6 sciences: physics, chemistry, biology, neuroscience, psychology, and social sciences. The stimuli were carefully constructed so that the reductive information would not provide any explanatory power, allowing the authors to separate out a potential preference for explanations with a reductive form even in the absence of any helpful reductive content.
+
+The original authors observed that there was a main effect of explanation level, where participants rated reductive explanations as of higher quality than horizontal explanations. They also observed that there was a relatively positive view of neuroscience combined with a relatively negative view of psychology, with information in these domains positively and negatively influencing the perceived quality of the reductive explanations respectively.
+
+### Challenges
+Participants may approach this task, and the explanations provided, with vastly different background knowledge, as was observed in the original study. As the replication sample will be crowd-sourced online via Prolific, participants may be motivated to complete the task as fast as possible rather than attempt to maximise their performance on the task, even with the instructional check at the start of the experiment and the attentional check in the middle of the Rating Explanations task.
+
+### Link to GitHub repository and original paper
+The repository for this rescue project is located at [https://github.com/psych251/hopkins2016_rescue](https://github.com/psych251/hopkins2016_rescue), and the original paper 
+
+> Hopkins, E. J., Weisberg, D. S., & Taylor, J. C. V. (2016). The seductive allure is a reductive allure: People prefer scientific explanations that contain logically irrelevant reductive information. Cognition, 155, 67–76. https://doi.org/10.1016/j.cognition.2016.06.011
+
+is hosted [here](https://github.com/psych251/hopkins2016_rescue/blob/main/original_paper/original_paper.pdf).
 
 ## Summary of prior replication attempt
 
-Based on the prior write-up, describe any differences between the original and 1st replication in terms of methods, sample, sample size, and analysis. Note any potential problems such as exclusion rates, noisy data, or issues with analysis. 
+<!-- Based on the prior write-up, describe any differences between the original and 1st replication in terms of methods, sample, sample size, and analysis. Note any potential problems such as exclusion rates, noisy data, or issues with analysis. -->
+
+The replication utilised the methodology exactly as reported in the original study, and found that ...
 
 ## Methods
 
@@ -35,7 +58,9 @@ Planned sample size and/or termination rule, sampling frame, known demographics 
 
 ### Materials
 
-All materials - can quote directly from original article - just put the text in quotations and note that this was followed precisely.  Or, quote directly and just point out exceptions to what was described in the original article.
+<!-- All materials - can quote directly from original article - just put the text in quotations and note that this was followed precisely.  Or, quote directly and just point out exceptions to what was described in the original article. -->
+
+All materials can be found in [Appendix A](https://www.sciencedirect.com/science/article/pii/S0010027716301585) of the original article and will be used without modifications.
 
 ### Procedure	
 
