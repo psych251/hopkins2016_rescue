@@ -40,56 +40,122 @@ is hosted [here](https://github.com/psych251/hopkins2016_rescue/blob/main/origin
 
 <!-- Based on the prior write-up, describe any differences between the original and 1st replication in terms of methods, sample, sample size, and analysis. Note any potential problems such as exclusion rates, noisy data, or issues with analysis. -->
 
-The replication utilised the methodology exactly as reported in the original study, and found that ...
+The primary research questions were "whether participants would prefer reductive explanations and whether this would differ by the science of the phenomenon".
+
+The measure of interest was the mean rating of quality of reductive and horizontal explanations of various scientific findings provided to participants along a sliding scale ranging from 3 (very good) to -3 (very poor). 
+
+The replication utilised the methodology exactly as reported in the original study for the Rating Explanations task, with the exception of using a sample completely recruited from MTurk and no undergraduates. The replication study also omitted tests of scientific literacy, reflective thinking, logical syllogisms, as well as perceptions of science (Sections 2.4.2 to 2.4.5 of the original study) to reduce completion time. 
+
+There were a high number of participants who failed the attention checks (70 out of 163 participants) in the replication study.
+
+However, even when the participants who had failed attention checks (either or both) were included in the analysis, the replication study did not manage to replicate the main effect of explanation quality, as well as the significant effect of explanation level.
+
+### Original Findings
+
+The regression in the original study revealed a significant main effect of explanation level (as reported in Figure 2 of original paper): reductive explanations (n=131, M=1.26, SD=1.71) were rated signficantly higher on average than horizonal explanations (n=128, M=1.04, SD=1.88). Effect sizes (Cohen's d for within-subjects tests) were only reported for pairwise differences between adjacent fields in the hierarchy of sciences (Figure 4 of original paper). 
+
+Participants (20 MTurk workers and 40 undergraduates out of the complete recruited sample of 167 MTurk workers and 152 undergraduates) who failed attention checks were excluded from the sample (i.e. 60 out of the total recruited sample of 318 participants).
 
 ## Methods
 
 ### Power Analysis
 
-Original effect size, power analysis for samples to achieve 80%, 90%, 95% power to detect that effect size.  Considerations of feasibility for selecting planned sample size.
+<!-- Original effect size, power analysis for samples to achieve 80%, 90%, 95% power to detect that effect size.  Considerations of feasibility for selecting planned sample size.
 
 How much power does your planned sample have for original effect? For an attenuated effect that is half the size of the original? 
 
-(If power analysis is not possible or precise, discuss more fully how you determined a sample size that would be sufficient for rescue.)
+(If power analysis is not possible or precise, discuss more fully how you determined a sample size that would be sufficient for rescue.) -->
+
+No power analysis or sample size justification was provided in the original paper, and the replication sample utilised the same MTurk sample size (n=167) from the original experiment to preserve power across both experiments.
+
+A [post-hoc power analysis](https://clincalc.com/stats/Power.aspx) of the original study with two independent study groups (reductive and horizonal explanations) with the quality of explanations as the main continuous effect and alpha at 0.05 yielded a post-hoc power of 16.5%.
 
 ### Planned Sample
 
-Planned sample size and/or termination rule, sampling frame, known demographics if any, preselection rules if any.
+<!-- Planned sample size and/or termination rule, sampling frame, known demographics if any, preselection rules if any. -->
+
+Like the original and replication samples, English-speaking adult participants residing in the United States will be recruited online (via Prolific instead of MTurk). Participants who complete the task and pass both attention checks will be included in the final sample for analysis. Details about the attention checks can be found in the Procedure or Control sections below.
+
+However, unlike the replication, the planned sample will match the total recruited number of participants (n=319) rather than just matching the number of adults who passed attention checks. We will likely be expecting a high number of exclusions due to failed attention checks, just like the original study (60 participants) and the replication study (70 participants).
 
 ### Materials
 
 <!-- All materials - can quote directly from original article - just put the text in quotations and note that this was followed precisely.  Or, quote directly and just point out exceptions to what was described in the original article. -->
 
-All materials can be found in [Appendix A](https://www.sciencedirect.com/science/article/pii/S0010027716301585) of the original article and will be used without modifications.
+The detailed process of constructing the stimuli can be found in the original paper. All materials for the Rating Explanations task can be found in [Appendix A](https://www.sciencedirect.com/science/article/pii/S0010027716301585) of the original paper and will be used without modifications.
 
 ### Procedure	
 
-Can quote directly from original article - just put the text in quotations and note that this was followed precisely.  Or, quote directly and just point out exceptions to what was described in the original article.
+<!-- Can quote directly from original article - just put the text in quotations and note that this was followed precisely.  Or, quote directly and just point out exceptions to what was described in the original article. -->
+
+The following procedure is quoted from the original article:
+
+> All participants completed an online survey hosted by Qualtrics. The survey had six components: Rating Explanations, Science Literacy, Reflective Thinking, Logical Syllogisms, Perceptions of Science, and Demographic Information. All participants completed the Rating Explanations component first and the Demographic Information last. The other four components were presented in a random order after the Rating Explanations component. The Rating Explanations task used a 2 (Explanation Level: horizontal, reductive) x 2 (Quality: good, bad) x 6 (Science: physics, biology, chemistry, neuroscience, psychology, social science) design. To be consistent with previous studies of this effect (Weisberg et al., 2008, 2015), explanation level was between-subjects: Participants were randomly assigned to either the horizontal or reductive condition. Quality and science were within-subjects: All participants rated two explanations from each science, one good and one bad.
+
+Unlike the original study, the participants will not be completing the Science Literacy, Reflective Thinking, Logical Syllogisms, and Perceptions of Science sections. They will thus only complete two components - the Rating Explanations, followed by Demographic Information.
+
+#### Rating Explanations
+
+The following paragraphs are quoted from the original article:
+
+> All participants completed the Rating Explanations task first. For this task, participants used a sliding scale ranging from 3 to -3 to indicate their responses. They were first given instructions on how to use the slider; this also served as a check that participants were reading instructions. They were told to use the slider to select 0 on the first page in order to proceed with the survey. If they selected anything other than 0, they were directed to another page asking them again to select 0. Participants who did not select the correct response on this second page were excluded from analyses. 
+
+> After these general instructions on using the slider, participants were given instructions for the explanations task (modified from Fernandez-Duque et al., 2015): 
+
+>> You will now be presented with descriptions of various scientific findings. All the findings come from solid, replicable research; they are the kind of material you would encounter in a textbook. You will also read an explanation of each finding. Unlike the findings themselves, the explanations of the findings range in quality. Some explanations are better than others: They are more logically sound. Your job is to judge the quality of such explanations, which could range from very poor (-3) to very good (+3). 
+
+> On each trial, participants were presented with a description of a scientific phenomenon, which was displayed for 10 s before participants could advance to the next screen. On the next screen, an explanation was displayed below the phenomenon, and participants were instructed to rate the quality of the explanation. Participants rated 12 explanations, with an attention check trial administered after the first six (Oppenheimer, Meyvis, & Davidenko, 2009). This trial was similar in format to the others. First, a description of a phenomenon was presented for 10 s. When participants advanced to the next screen, instead of seeing an explanation, they saw text instructing them to select 3 on the scale. Participants who did not select 3 were excluded from analyses. 
+
+#### Demographics
+
+The following procedure is quoted from the original article:
+
+> At the end of the survey, participants answered a series of demographic questions, including gender, age, and year in school (for undergraduates) or highest degree completed (for MTurk workers). Participants from both samples were asked to pick the category that most closely matched the field of their highest degree (physical sciences, social sciences, engineering, humanities, health, and business) and to give the exact field. They were also asked whether they had taken any college- or graduate-level courses in anthropology, chemistry, physics, sociology, economics, neuroscience, psychology, political science, biology, or philosophy.
+
+Since undergraduates will not be recruited for this sample, the demographic questions will only include gender, age, highest degree completed, category that closely matched the field of their highest degree (physical sciences, social sciences, engineering, humanities, health, and business), and college- or graduate-level coursework.
+
+In addition, this rescue project not be asking about coursework in anthropology and philosophy as these subjects are tangential to the main research questions. Instead, the list of courses will have a combined social sciences item for anthropology/economics/philopsphy so that there will be 6 scientific disciplines in the list which are aligned to the rating explanations. (The original paper also averaged sociology, economics, and political science into a single post-hoc measure when analysing participants' perceptions of science as they found that the three domains were highly correlated.) This rescue study preserves the coursework question as the original study observed that "the total number of sciences (out of 6) in which a participant had taken courses was a significant predictor of overall difference scores in a linear regression: _F_ (1, 214) = 6.27, _p_ < 0.05, _R^2^_ = 0.02."
 
 ### Controls
 
-What attention checks, positive or negative controls, or other quality control measures are you adding so that a (positive or negative) result will be more interpretable?
+<!-- What attention checks, positive or negative controls, or other quality control measures are you adding so that a (positive or negative) result will be more interpretable? -->
+
+Both attention checks are placed within the Rating Explanations block of the survey.
+
+The first attention check simply requires participants to select 0 on the sliding scale ranging from -3 to 3 after reading instructions on the Rating Explanations task. The second attention check occurs after participants rate 6 out of the 12 explanations. A phenomenon is also presented for 10 seconds, but "when participants advanced to the next screen, instead of seeing an explanation, they saw text instructing them to select 3" on the same sliding scale.
 
 
 ### Analysis Plan
 
-Can also quote directly, though it is less often spelled out effectively for an analysis strategy section.  The key is to report an analysis strategy that is as close to the original - data cleaning rules, data exclusion rules, covariates, etc. - as possible.  
+<!-- Can also quote directly, though it is less often spelled out effectively for an analysis strategy section.  The key is to report an analysis strategy that is as close to the original - data cleaning rules, data exclusion rules, covariates, etc. - as possible.
 
-**Clarify key analysis of interest here**  You can also pre-specify additional analyses you plan to do.
+**Clarify key analysis of interest here**  You can also pre-specify additional analyses you plan to do. -->
+
+The following procedure for the key analysis of interest is quoted from the original article:
+
+> Data from the explanations task were analyzed with a mixed-effects linear regression model (using the lme4 package in R) predicting the rating given on each trial from the sample (MTurk, undergraduates), the quality of the explanation (good, bad), the explanation level (horizontal, reductive), and the science from which the phenomenon was drawn (physics, chemistry, biology, neuroscience, psychology, and social science). Sample and explanation level were between-participants variables and quality and science were within-participants. All possible interactions between variables were tested.
+
+Similar to the replication but not the original study, the between-participants variable "sample" will not be available for analysis as there will not be an undergraduate population recruited.
 
 ### Differences from Original Study and 1st replication
 
-Explicitly describe known differences in sample, setting, procedure, and analysis plan from original study.  The goal, of course, is to minimize those differences, but differences will inevitably occur.  Also, note whether such differences are anticipated to make a difference based on claims in the original article or subsequent published research on the conditions for obtaining the effect.
+<!-- Explicitly describe known differences in sample, setting, procedure, and analysis plan from original study.  The goal, of course, is to minimize those differences, but differences will inevitably occur.  Also, note whether such differences are anticipated to make a difference based on claims in the original article or subsequent published research on the conditions for obtaining the effect. -->
 
+Unlike the original study and replication, the sample will be recruited online via Prolific rather than Amazon Mechanical Turk (MTurk). The other differences have been detailed in the sections above.
+
+Given that the experimental materials and procedure involved in testing the primary research questions remain identical, and the analysis plan is identical save for one between-participants variable which did not make a difference in the analysis in the original study, these adjustments to the original study are not expected to make a difference based on claims in the original article.
+
+<!--
 ### Methods Addendum (Post Data Collection)
 
 You can comment this section out prior to final report with data collection.
+-->
 
 #### Actual Sample
-  Sample size, demographics, data exclusions based on rules spelled out in analysis plan
+<!-- Sample size, demographics, data exclusions based on rules spelled out in analysis plan. -->
 
 #### Differences from pre-data collection methods plan
-  Any differences from what was described as the original plan, or “none”.
+<!-- Any differences from what was described as the original plan, or “none”. -->
 
 
 ## Results
@@ -98,13 +164,27 @@ You can comment this section out prior to final report with data collection.
 ### Data preparation
 
 Data preparation following the analysis plan.
-	
-```{r include=F}
+
+1. Load qualtRics, tidyverse, and lme4 libraries.
+2. Read in data from original study, replication study, and current rescue study.
+3. Remove columns unnecessary for primary analysis.
+4. Select participants who passed both attention checks.
+5. Reshape to extract summary statistics for included participants.
+6. Convert ratings into integers and factor variables into categories (good and bad explanations, horizontal and reductive explanations).
+7. Run 2x2x6 linear mixed-effects linear regression predicting explanation rating based on the quality of the explanation (good or bad), the explanation level (horizontal or reductive), and the science from which the phenomenon was drawn (6 sciences). 
+8. Visualize plots.
+9. Conduct exploratory analyses if needed.
+
+```{r include=F, echo=TRUE}
 ### Data Preparation
 
 #### Load Relevant Libraries and Functions
+library(qualtRics) #To read data from Qualtrics
+library(tidyverse) #To clean data and plot graphs in ggplot
+library(lme4) #To run mixed-effects linear regression model in original study
 
 #### Import data
+# Read in data
 
 #### Data exclusion / filtering
 
@@ -113,13 +193,14 @@ Data preparation following the analysis plan.
 
 ### Results of control measures
 
-How did people perform on any quality control checks or positive and negative controls? 
+<!-- How did people perform on any quality control checks or positive and negative controls? -->
 
 ### Confirmatory analysis
 
-The analyses as specified in the analysis plan.  
+<!-- The analyses as specified in the analysis plan.  
 
-*Three-panel graph with original, 1st replication, and your replication is ideal here*
+*Three-panel graph with original, 1st replication, and your replication is ideal here* -->
+
 
 ### Exploratory analyses
 
