@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Howard Chiu (howardchiu@stanford.edu)">
-<meta name="dcterms.date" content="2023-10-22">
+<meta name="dcterms.date" content="2023-10-29">
 
 <title>Replication of Study 1 by Hopkins, Weisberg, and Taylor (2016, Cognition)</title>
 <style>
@@ -19,7 +19,40 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
 width: 0.8em;
-margin: 0 0.8em 0.2em -1em;  vertical-align: middle;
+margin: 0 0.8em 0.2em -1em; vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+}
+pre.numberSource { margin-left: 3em; padding-left: 4px; }
+div.sourceCode
+{ }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -3024,6 +3057,7 @@ vertical-align: -.125em;
   <ul class="collapse">
   <li><a href="#summary-of-replication-attempt" id="toc-summary-of-replication-attempt" class="nav-link" data-scroll-target="#summary-of-replication-attempt">Summary of Replication Attempt</a></li>
   <li><a href="#commentary" id="toc-commentary" class="nav-link" data-scroll-target="#commentary">Commentary</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -3049,7 +3083,7 @@ vertical-align: -.125em;
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">October 22, 2023</p>
+      <p class="date">October 29, 2023</p>
     </div>
   </div>
   
@@ -3095,9 +3129,10 @@ vertical-align: -.125em;
 <p>The replication utilised the methodology exactly as reported in the original study for the Rating Explanations task, with the exception of using a sample completely recruited from MTurk and no undergraduates. The replication study also omitted tests of scientific literacy, reflective thinking, logical syllogisms, as well as perceptions of science (Sections 2.4.2 to 2.4.5 of the original study) to reduce completion time.</p>
 <p>There were a high number of participants who failed the attention checks (70 out of 163 participants) in the replication study.</p>
 <p>However, even when the participants who had failed attention checks (either or both) were included in the analysis, the replication study did not manage to replicate the main effect of explanation quality, as well as the significant effect of explanation level.</p>
+<p>The repository for the previous replication is hosted <a href="https://github.com/psych251/hopkins2016/">here</a>.</p>
 <section id="original-findings" class="level3">
 <h3 class="anchored" data-anchor-id="original-findings">Original Findings</h3>
-<p>The regression in the original study revealed a significant main effect of explanation level (as reported in Figure 2 of original paper): reductive explanations (n=131, M=1.26, SD=1.71) were rated signficantly higher on average than horizonal explanations (n=128, M=1.04, SD=1.88). Effect sizes (Cohen’s d for within-subjects tests) were only reported for pairwise differences between adjacent fields in the hierarchy of sciences (Figure 4 of original paper).</p>
+<p>The regression in the original study revealed a significant main effect of explanation level (as reported in Figure 2 of original paper): reductive explanations (<em>n</em>=131, <em>M</em>=1.26, <em>SD</em>=1.71) were rated signficantly higher on average than horizonal explanations (<em>n</em>=128, <em>M</em>=1.04, <em>SD</em>=1.88). Effect sizes (Cohen’s <em>d</em> for within-subjects tests) were only reported for pairwise differences between adjacent fields in the hierarchy of sciences (Figure 4 of original paper).</p>
 <p>Participants (20 MTurk workers and 40 undergraduates out of the complete recruited sample of 167 MTurk workers and 152 undergraduates) who failed attention checks were excluded from the sample (i.e. 60 out of the total recruited sample of 318 participants).</p>
 </section>
 </section>
@@ -3110,7 +3145,7 @@ vertical-align: -.125em;
 How much power does your planned sample have for original effect? For an attenuated effect that is half the size of the original? 
 
 (If power analysis is not possible or precise, discuss more fully how you determined a sample size that would be sufficient for rescue.) -->
-<p>No power analysis or sample size justification was provided in the original paper, and the replication sample utilised the same MTurk sample size (n=167) from the original experiment to preserve power across both experiments.</p>
+<p>No power analysis or sample size justification was provided in the original paper, and the replication sample utilised the same MTurk sample size (<em>n</em>=167) from the original experiment to preserve power across both experiments.</p>
 <p>A <a href="https://clincalc.com/stats/Power.aspx">post-hoc power analysis</a> of the original study with two independent study groups (reductive and horizonal explanations) with the quality of explanations as the main continuous effect and alpha at 0.05 yielded a post-hoc power of 16.5%.</p>
 </section>
 <section id="planned-sample" class="level3">
@@ -3166,6 +3201,8 @@ How much power does your planned sample have for original effect? For an attenua
 <!-- What attention checks, positive or negative controls, or other quality control measures are you adding so that a (positive or negative) result will be more interpretable? -->
 <p>Both attention checks are placed within the Rating Explanations block of the survey.</p>
 <p>The first attention check simply requires participants to select 0 on the sliding scale ranging from -3 to 3 after reading instructions on the Rating Explanations task. The second attention check occurs after participants rate 6 out of the 12 explanations. A phenomenon is also presented for 10 seconds, but “when participants advanced to the next screen, instead of seeing an explanation, they saw text instructing them to select 3” on the same sliding scale.</p>
+<p>In addition, the description of each scientific phenomena was “displayed for 10 s before participants could advance to the next screen” to ensure that they had sufficient time to read before they could view the explanations provided. This delay should also ensure greater deliberation as participants could not rush through the questions as quickly.</p>
+<p>The exact stimuli used for attention checks were not provided in the original paper, so the attention checks in the replication were used.</p>
 </section>
 <section id="analysis-plan" class="level3">
 <h3 class="anchored" data-anchor-id="analysis-plan">Analysis Plan</h3>
@@ -3202,7 +3239,7 @@ You can comment this section out prior to final report with data collection.
 <h2 class="anchored" data-anchor-id="results">Results</h2>
 <section id="data-preparation" class="level3">
 <h3 class="anchored" data-anchor-id="data-preparation">Data preparation</h3>
-<p>Data preparation following the analysis plan.</p>
+<p>Data preparation following the analysis plan. Code has been kindly provided by the author of the replication study, and will mostly be used as is with some edits for debugging and naming conventions.</p>
 <ol type="1">
 <li>Load qualtRics, tidyverse, and lme4 libraries.</li>
 <li>Read in data from original study, replication study, and current rescue study.</li>
@@ -3214,23 +3251,186 @@ You can comment this section out prior to final report with data collection.
 <li>Visualize plots.</li>
 <li>Conduct exploratory analyses if needed.</li>
 </ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="do">### Data Preparation</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="do">#### Load Relevant Libraries and Functions</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(qualtRics) <span class="co">#To read data from Qualtrics</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse) <span class="co">#To clean data and plot graphs in ggplot</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.3     ✔ readr     2.1.4
+✔ forcats   1.0.0     ✔ stringr   1.5.0
+✔ ggplot2   3.4.3     ✔ tibble    3.2.1
+✔ lubridate 1.9.3     ✔ tidyr     1.3.0
+✔ purrr     1.0.2     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lme4) <span class="co">#To run mixed-effects linear regression model in original study</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: Matrix
+
+Attaching package: &#39;Matrix&#39;
+
+The following objects are masked from &#39;package:tidyr&#39;:
+
+    expand, pack, unpack</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Import data</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>raw_data <span class="ot">&lt;-</span> <span class="fu">read_survey</span>(<span class="st">&quot;../data/pilotdata.csv&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  .default = col_double(),
+  StartDate = col_datetime(format = &quot;&quot;),
+  EndDate = col_datetime(format = &quot;&quot;),
+  IPAddress = col_character(),
+  RecordedDate = col_datetime(format = &quot;&quot;),
+  ResponseId = col_character(),
+  RecipientLastName = col_logical(),
+  RecipientFirstName = col_logical(),
+  RecipientEmail = col_logical(),
+  ExternalReference = col_logical(),
+  DistributionChannel = col_character(),
+  UserLanguage = col_character(),
+  `P1-RB_1` = col_logical(),
+  `C2-RG_1` = col_logical(),
+  `B2-RG_1` = col_logical(),
+  `N2-RG_1` = col_logical(),
+  `Y1-RB_1` = col_logical(),
+  `S1-RB_1` = col_logical(),
+  `P2-RG_1` = col_logical(),
+  `C1-RB_1` = col_logical(),
+  `B1-RB_1` = col_logical()
+  # ... with 19 more columns
+)
+ℹ Use `spec()` for the full column specifications.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Data exclusion / filtering</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>raw_data <span class="ot">&lt;-</span> raw_data <span class="sc">|&gt;</span> </span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(StartDate<span class="sc">:</span>Consent,<span class="st">&#39;Year&#39;</span><span class="sc">:</span><span class="st">&#39;Feedback&#39;</span>)) <span class="co">#delete columns not used in analysis</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>data_num <span class="ot">&lt;-</span> raw_data <span class="sc">|&gt;</span> </span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">ID =</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(raw_data)) <span class="co">#add participant ID column</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>data_num <span class="ot">&lt;-</span> data_num <span class="sc">|&gt;</span> </span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Att_1, <span class="fu">everything</span>()) <span class="co">#move attention check 2 to front of data frame</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="do">#### Prepare data for analysis - create columns etc.</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="co">#convert to long format</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>data_long <span class="ot">&lt;-</span> data_num <span class="sc">|&gt;</span> </span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="st">&#39;P1-HG_1&#39;</span><span class="sc">:</span><span class="st">&#39;S4-RB_1&#39;</span>, <span class="at">names_to =</span> <span class="st">&quot;full_item&quot;</span>, <span class="at">values_to =</span> <span class="st">&quot;rating&quot;</span>, <span class="at">values_drop_na=</span><span class="cn">TRUE</span>)</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="co">#specify item attributes</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>data_long <span class="ot">&lt;-</span> data_long <span class="sc">|&gt;</span> </span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">science =</span> <span class="fu">substr</span>(full_item, <span class="at">start=</span><span class="dv">1</span>, <span class="at">stop=</span><span class="dv">1</span>))</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>data_long <span class="ot">&lt;-</span> data_long <span class="sc">|&gt;</span> </span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">item =</span> <span class="fu">substr</span>(full_item, <span class="at">start=</span><span class="dv">1</span>, <span class="at">stop=</span><span class="dv">2</span>))</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>data_long <span class="ot">&lt;-</span> data_long <span class="sc">|&gt;</span> </span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">quality =</span> <span class="fu">substr</span>(full_item, <span class="at">start=</span><span class="dv">5</span>, <span class="at">stop=</span><span class="dv">5</span>))</span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>data_long <span class="ot">&lt;-</span> data_long <span class="sc">|&gt;</span> </span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>full_item)</span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>data_long <span class="ot">&lt;-</span> data_long <span class="sc">|&gt;</span> </span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(rating<span class="sc">!=</span><span class="st">&quot;&quot;</span>)</span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a><span class="co">#recode item names</span></span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>data_long<span class="sc">$</span>quality <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(data_long<span class="sc">$</span>quality<span class="sc">==</span><span class="st">&quot;G&quot;</span>, <span class="st">&quot;good&quot;</span>, <span class="st">&quot;bad&quot;</span>)</span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a>data_long<span class="sc">$</span>science <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(data_long<span class="sc">$</span>science<span class="sc">==</span><span class="st">&quot;P&quot;</span>, <span class="st">&quot;physics&quot;</span>, data_long<span class="sc">$</span>science)</span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a>data_long<span class="sc">$</span>science <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(data_long<span class="sc">$</span>science<span class="sc">==</span><span class="st">&quot;C&quot;</span>, <span class="st">&quot;chemistry&quot;</span>, data_long<span class="sc">$</span>science)</span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a>data_long<span class="sc">$</span>science <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(data_long<span class="sc">$</span>science<span class="sc">==</span><span class="st">&quot;B&quot;</span>, <span class="st">&quot;biology&quot;</span>, data_long<span class="sc">$</span>science)</span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a>data_long<span class="sc">$</span>science <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(data_long<span class="sc">$</span>science<span class="sc">==</span><span class="st">&quot;N&quot;</span>, <span class="st">&quot;neuroscience&quot;</span>, data_long<span class="sc">$</span>science)</span>
+<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a>data_long<span class="sc">$</span>science <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(data_long<span class="sc">$</span>science<span class="sc">==</span><span class="st">&quot;Y&quot;</span>, <span class="st">&quot;psychology&quot;</span>, data_long<span class="sc">$</span>science)</span>
+<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a>data_long<span class="sc">$</span>science <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(data_long<span class="sc">$</span>science<span class="sc">==</span><span class="st">&quot;S&quot;</span>, <span class="st">&quot;social&quot;</span>, data_long<span class="sc">$</span>science)</span>
+<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a><span class="co">#convert columns to intended data types for analysis</span></span>
+<span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a>data_long<span class="sc">$</span>rating <span class="ot">&lt;-</span> <span class="fu">as.integer</span>(<span class="fu">as.character</span>(data_long<span class="sc">$</span>rating))</span>
+<span id="cb7-44"><a href="#cb7-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-45"><a href="#cb7-45" aria-hidden="true" tabindex="-1"></a>data_long<span class="sc">$</span>science <span class="ot">&lt;-</span> <span class="fu">factor</span>(data_long<span class="sc">$</span>science, </span>
+<span id="cb7-46"><a href="#cb7-46" aria-hidden="true" tabindex="-1"></a>                  <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;physics&quot;</span>, <span class="st">&quot;chemistry&quot;</span>, <span class="st">&quot;biology&quot;</span>, <span class="st">&quot;neuroscience&quot;</span>, <span class="st">&quot;psychology&quot;</span>, <span class="st">&quot;social&quot;</span>),</span>
+<span id="cb7-47"><a href="#cb7-47" aria-hidden="true" tabindex="-1"></a>                  <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;physics&quot;</span>, <span class="st">&quot;chemistry&quot;</span>, <span class="st">&quot;biology&quot;</span>, <span class="st">&quot;neuroscience&quot;</span>, <span class="st">&quot;psychology&quot;</span>, <span class="st">&quot;social&quot;</span>))</span>
+<span id="cb7-48"><a href="#cb7-48" aria-hidden="true" tabindex="-1"></a>data_long<span class="sc">$</span>quality <span class="ot">&lt;-</span> <span class="fu">factor</span>(data_long<span class="sc">$</span>quality, </span>
+<span id="cb7-49"><a href="#cb7-49" aria-hidden="true" tabindex="-1"></a>                  <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;good&quot;</span>, <span class="st">&quot;bad&quot;</span>),</span>
+<span id="cb7-50"><a href="#cb7-50" aria-hidden="true" tabindex="-1"></a>                  <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;good&quot;</span>, <span class="st">&quot;bad&quot;</span>))</span>
+<span id="cb7-51"><a href="#cb7-51" aria-hidden="true" tabindex="-1"></a>data_long<span class="sc">$</span>condition <span class="ot">&lt;-</span> <span class="fu">factor</span>(data_long<span class="sc">$</span>Condition, </span>
+<span id="cb7-52"><a href="#cb7-52" aria-hidden="true" tabindex="-1"></a>                  <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;H&quot;</span>, <span class="st">&quot;R&quot;</span>),</span>
+<span id="cb7-53"><a href="#cb7-53" aria-hidden="true" tabindex="-1"></a>                  <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Horizontal&quot;</span>, <span class="st">&quot;Reductive&quot;</span>))</span>
+<span id="cb7-54"><a href="#cb7-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-55"><a href="#cb7-55" aria-hidden="true" tabindex="-1"></a><span class="co">#exclude participants who failed attention check 1</span></span>
+<span id="cb7-56"><a href="#cb7-56" aria-hidden="true" tabindex="-1"></a>data_excluded_both <span class="ot">&lt;-</span> data_long <span class="sc">|&gt;</span> </span>
+<span id="cb7-57"><a href="#cb7-57" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Slider1_1<span class="sc">==</span><span class="dv">0</span>)</span>
+<span id="cb7-58"><a href="#cb7-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-59"><a href="#cb7-59" aria-hidden="true" tabindex="-1"></a><span class="co">#exclude participants who failed attention check 2</span></span>
+<span id="cb7-60"><a href="#cb7-60" aria-hidden="true" tabindex="-1"></a>data_excluded_both <span class="ot">&lt;-</span> data_excluded_both <span class="sc">|&gt;</span> </span>
+<span id="cb7-61"><a href="#cb7-61" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Att_1<span class="sc">==</span><span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="results-of-control-measures" class="level3">
 <h3 class="anchored" data-anchor-id="results-of-control-measures">Results of control measures</h3>
-<p>How did people perform on any quality control checks or positive and negative controls?</p>
+<!-- How did people perform on any quality control checks or positive and negative controls? -->
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#total number of participants</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>unfiltered_rows <span class="ot">=</span> data_long <span class="sc">%&gt;%</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nrow</span>()</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>unfiltered_total <span class="ot">=</span> (unfiltered_rows <span class="sc">/</span> <span class="dv">12</span>)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co">#total number of participants who passed attention checks</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>filtered_rows <span class="ot">=</span> data_excluded_both <span class="sc">%&gt;%</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nrow</span>()</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>filtered_total <span class="ot">=</span> (filtered_rows <span class="sc">/</span> <span class="dv">12</span>)</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="co">#number of excluded participants</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>num_excluded <span class="ot">=</span> unfiltered_total <span class="sc">-</span> filtered_total</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>num_excluded</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 9</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">#final number of included participants</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>filtered_total</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2</code></pre>
+</div>
+</div>
+<p>There was a high number of participants who failed the first attention check. I will need to relook at the formatting to emphasize that they should select 0.</p>
 </section>
 <section id="confirmatory-analysis" class="level3">
 <h3 class="anchored" data-anchor-id="confirmatory-analysis">Confirmatory analysis</h3>
-<p>The analyses as specified in the analysis plan.</p>
-<p><em>Three-panel graph with original, 1st replication, and your replication is ideal here</em></p>
-<!-- 
-Complete up to here for assignment due on Sunday
+<!-- The analyses as specified in the analysis plan.  
 
--->
+*Three-panel graph with original, 1st replication, and your replication is ideal here* -->
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Read in and format data</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data_excluded_both</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Reorder levels of the factors to facilitate contrast coding in regressions:</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>data<span class="sc">$</span>science <span class="ot">&lt;-</span> <span class="fu">relevel</span>(data<span class="sc">$</span>science, <span class="at">ref =</span> <span class="st">&quot;social&quot;</span>)</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>data<span class="sc">$</span>science <span class="ot">&lt;-</span> <span class="fu">relevel</span>(data<span class="sc">$</span>science, <span class="at">ref =</span> <span class="st">&quot;psychology&quot;</span>)</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>data<span class="sc">$</span>science <span class="ot">&lt;-</span> <span class="fu">relevel</span>(data<span class="sc">$</span>science, <span class="at">ref =</span> <span class="st">&quot;neuroscience&quot;</span>)</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>data<span class="sc">$</span>science <span class="ot">&lt;-</span> <span class="fu">relevel</span>(data<span class="sc">$</span>science, <span class="at">ref =</span> <span class="st">&quot;biology&quot;</span>)</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>data<span class="sc">$</span>science <span class="ot">&lt;-</span> <span class="fu">relevel</span>(data<span class="sc">$</span>science, <span class="at">ref =</span> <span class="st">&quot;chemistry&quot;</span>)</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>data<span class="sc">$</span>science <span class="ot">&lt;-</span> <span class="fu">relevel</span>(data<span class="sc">$</span>science, <span class="at">ref =</span> <span class="st">&quot;physics&quot;</span>)</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="co">#Backward difference coding; each level is compared to the mean of the one before it </span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="fu">contrasts</span>(data<span class="sc">$</span>quality) <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span><span class="sc">/</span><span class="dv">2</span>,<span class="dv">1</span><span class="sc">/</span><span class="dv">2</span>), <span class="at">nrow=</span><span class="dv">2</span>)</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a><span class="fu">contrasts</span>(data<span class="sc">$</span>condition) <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span><span class="sc">/</span><span class="dv">2</span>,<span class="dv">1</span><span class="sc">/</span><span class="dv">2</span>), <span class="at">nrow=</span><span class="dv">2</span>)</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a><span class="co">#Deviation coding: each level is compared to the grand mean (physics is in the intercept)</span></span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a><span class="fu">contrasts</span>(data<span class="sc">$</span>science) <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="sc">-</span><span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="sc">-</span><span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="sc">-</span><span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="sc">-</span><span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>), <span class="at">nrow=</span><span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>I am currently having difficulty writing up the chunk of code for the mixed effects model using lmer.</p>
 </section>
 <section id="exploratory-analyses" class="level3">
 <h3 class="anchored" data-anchor-id="exploratory-analyses">Exploratory analyses</h3>
-<p>Any follow-up analyses desired (not required).</p>
+<!-- Any follow-up analyses desired (not required). -->
 </section>
 </section>
 <section id="discussion" class="level2">
@@ -3238,14 +3438,22 @@ Complete up to here for assignment due on Sunday
 </section>
 <section id="mini-meta-analysis" class="level2">
 <h2 class="anchored" data-anchor-id="mini-meta-analysis">Mini meta analysis</h2>
-<p>Combining across the original paper, 1st replication, and 2nd replication, what is the aggregate effect size?</p>
+<!-- Combining across the original paper, 1st replication, and 2nd replication, what is the aggregate effect size? -->
 <section id="summary-of-replication-attempt" class="level3">
 <h3 class="anchored" data-anchor-id="summary-of-replication-attempt">Summary of Replication Attempt</h3>
-<p>Open the discussion section with a paragraph summarizing the primary result from the confirmatory analysis and the assessment of whether it replicated, partially replicated, or failed to replicate the original result.</p>
+<!-- Open the discussion section with a paragraph summarizing the primary result from the confirmatory analysis and the assessment of whether it replicated, partially replicated, or failed to replicate the original result. -->
 </section>
 <section id="commentary" class="level3">
 <h3 class="anchored" data-anchor-id="commentary">Commentary</h3>
-<p>Add open-ended commentary (if any) reflecting (a) insights from follow-up exploratory analysis, (b) assessment of the meaning of the replication (or not) - e.g., for a failure to replicate, are the differences between original and present study ones that definitely, plausibly, or are unlikely to have been moderators of the result, and (c) discussion of any objections or challenges raised by the current and original authors about the replication attempt. None of these need to be long.</p>
+<!-- Add open-ended commentary (if any) reflecting (a) insights from follow-up exploratory analysis, (b) assessment of the meaning of the replication (or not) - e.g., for a failure to replicate, are the differences between original and present study ones that definitely, plausibly, or are unlikely to have been moderators of the result, and (c) discussion of any objections or challenges raised by the current and original authors about the replication attempt.  None of these need to be long. -->
+<p>Although the 7-point Likert scale seems rudimentary, the same authors continued to use this measure for rating explanation quality, even in subsequent papers (Hopkins, Weisberg, &amp; Taylor, 2019). A related study investigating the seductive allure of technical language (Silas et al., 2021) on explanations about how vaccination, immunisation and herd immunity work also utilised the same 7-point Likert scale.</p>
+<!-- Maybe talk about Lund University replication? -->
+</section>
+<section id="references" class="level3">
+<h3 class="anchored" data-anchor-id="references">References</h3>
+<p>Hopkins, E. J., Weisberg, D. S., &amp; Taylor, J. C. V. (2019). Does expertise moderate the seductive allure of reductive explanations? Acta Psychologica, 198, 102890. https://doi.org/10.1016/j.actpsy.2019.102890</p>
+<p>Silas, J., Jones, A., Weiss-Cohen, L., &amp; Ayton, P. (2021). The seductive allure of technical language and its effect on covid-19 vaccine beliefs and intentions. Vaccine, 39(52), 7590–7597. https://doi.org/10.1016/j.vaccine.2021.11.027</p>
+<p>https://lup.lub.lu.se/student-papers/record/8933160/file/8933162.pdf</p>
 </section>
 </section>
 
