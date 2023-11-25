@@ -56,7 +56,7 @@ The repository for the previous replication is hosted [here](https://github.com/
 
 The regression in the original study revealed a significant main effect of explanation level (as reported in Figure 2 of original paper): reductive explanations (_n_=131, _M_=1.26, _SD_=1.71) were rated signficantly higher on average than horizonal explanations (_n_=128, _M_=1.04, _SD_=1.88). Effect sizes (Cohen's _d_ for within-subjects tests) were only reported for pairwise differences between adjacent fields in the hierarchy of sciences (Figure 4 of original paper). 
 
-Participants (20 MTurk workers and 40 undergraduates out of the complete recruited sample of 167 MTurk workers and 152 undergraduates) who failed attention checks were excluded from the sample (i.e. 60 out of the total recruited sample of 318 participants).
+Participants (20 MTurk workers and 40 undergraduates out of the complete recruited sample of 167 MTurk workers and 152 undergraduates) who failed attention checks were excluded from the sample (i.e. 60 out of the total recruited sample of 319 participants).
 
 ## Methods
 
@@ -70,7 +70,9 @@ How much power does your planned sample have for original effect? For an attenua
 
 No power analysis or sample size justification was provided in the original paper, and the replication sample utilised the same MTurk sample size (_n_=167) from the original experiment to preserve power across both experiments.
 
-A [post-hoc power analysis](https://clincalc.com/stats/Power.aspx) of the original study with two independent study groups (reductive and horizonal explanations) with the quality of explanations as the main continuous effect and alpha at 0.05 yielded a post-hoc power of 16.5%.
+A post-hoc power analysis of the original study with two independent study groups (reductive and horizonal explanations) with the quality of explanations as the main continuous effect and alpha at 0.05 yielded a post-hoc power of 16.5%. The post-hoc power analysis was conducted with G*Power 3.1.
+
+<!-- Check Hopkins 2019 and replication study for post-hoc power -->
 
 ### Planned Sample
 
@@ -79,6 +81,8 @@ A [post-hoc power analysis](https://clincalc.com/stats/Power.aspx) of the origin
 Like the original and replication samples, English-speaking adult participants residing in the United States will be recruited online (via Prolific instead of MTurk). Participants who complete the task and pass both attention checks will be included in the final sample for analysis. Details about the attention checks can be found in the Procedure or Control sections below.
 
 However, unlike the replication, the planned sample will match the total recruited number of participants (n=319) rather than just matching the number of adults who passed attention checks. We will likely be expecting a high number of exclusions due to failed attention checks, just like the original study (60 participants) and the replication study (70 participants).
+
+<!-- 2.5 times original sample size gives you 80% chance to reject 33% powered study -->
 
 ### Materials
 
@@ -187,13 +191,15 @@ Data preparation following the analysis plan. Code has been kindly provided by t
 library(qualtRics) #To read data from Qualtrics
 library(tidyverse) #To clean data and plot graphs in ggplot
 library(lme4) #To run mixed-effects linear regression model in original study
+library(lmerTest)
+library(brms) #To run Bayesian supplementary analyses
 
 #### Import data
 raw_data <- read_survey("../data/pilotdata.csv")
 
 #### Data exclusion / filtering
 raw_data <- raw_data |> 
-  select(-c(StartDate:Consent,'Year':'Feedback')) #delete columns not used in analysis
+  select(-c(StartDate:Consent,'Feedback')) #delete columns not used in analysis
 
 data_num <- raw_data |> 
   mutate(ID = 1:nrow(raw_data)) #add participant ID column
@@ -235,23 +241,13 @@ data_long$science <- ifelse(data_long$science=="S", "social", data_long$science)
 #convert columns to intended data types for analysis
 data_long$rating <- as.integer(as.character(data_long$rating))
 
-data_long$science <- factor(data_long$science, 
-                  levels = c("physics", "chemistry", "biology", "neuroscience", "psychology", "social"),
-                  labels = c("physics", "chemistry", "biology", "neuroscience", "psychology", "social"))
-data_long$quality <- factor(data_long$quality, 
-                  levels = c("good", "bad"),
-                  labels = c("good", "bad"))
-data_long$condition <- factor(data_long$Condition, 
-                  levels = c("H", "R"),
-                  labels = c("Horizontal", "Reductive"))
-
 #exclude participants who failed attention check 1
-data_excluded_both <- data_long |> 
-  filter(Slider1_1==0)
+# data_excluded_both <- data_long |> 
+#  filter(Slider1_1==0)
 
 #exclude participants who failed attention check 2
-data_excluded_both <- data_excluded_both |> 
-  filter(Att_1==3)
+# data_excluded_both <- data_excluded_both |> 
+#  filter(Att_1==3)
 ```
 
 ### Results of control measures
@@ -265,17 +261,17 @@ unfiltered_rows = data_long %>%
 unfiltered_total = (unfiltered_rows / 12)
 
 #total number of participants who passed attention checks
-filtered_rows = data_excluded_both %>%
-  nrow()
+# filtered_rows = data_excluded_both %>%
+#  nrow()
 
-filtered_total = (filtered_rows / 12)
+# filtered_total = (filtered_rows / 12)
 #number of excluded participants
-num_excluded = unfiltered_total - filtered_total
+# num_excluded = unfiltered_total - filtered_total
 
-num_excluded
+# num_excluded
 
 #final number of included participants
-filtered_total
+# filtered_total
 ```
 
 There was a high number of participants who failed the first attention check. I will need to relook at the formatting to emphasize that they should select 0.
@@ -289,7 +285,13 @@ There was a high number of participants who failed the first attention check. I 
 ```{r echo=TRUE}
 
 #Read in and format data
-data <- data_excluded_both
+# data <- data_excluded_both
+data <- data_long
+
+# Convert to factor
+data$science <- as.factor(data$science)
+data$quality <- as.factor(data$quality)
+data$condition <- as.factor(data$Condition)
 
 #Reorder levels of the factors to facilitate contrast coding in regressions:
 data$science <- relevel(data$science, ref = "social")
@@ -308,11 +310,103 @@ contrasts(data$science) <- matrix(c(-1,1,0,0,0,0,-1,0,1,0,0,0,-1,0,0,1,0,0,-1,0,
 
 ```
 
-I am currently having difficulty writing up the chunk of code for the mixed effects model using lmer.
+In the original experiment, participant, science and items are random effects, explanation level and quality are fixed effects, and participant rating is the dependent variable.
+
+The original authors also note that "the bestfitting model included random intercepts by participant and item as well as a random effect of item on the slope for the quality variable".
+
+This replication project does not have different samples of participants. Therefore, to the best of my understanding, the lmer equation is
+
+```{r echo=TRUE}
+
+my_explanations <- lmer(rating ~ quality + condition + (quality * condition) + (1 | ID) + (1 | science) + (quality | item), data = data)
+
+summary(my_explanations)
+
+```
 
 ### Exploratory analyses
 
 <!-- Any follow-up analyses desired (not required). -->
+
+I repeated the analyses using Bayesian modelling, and obtained similar results as the lmer.
+
+```{r echo=TRUE}
+
+my_bayes_explanations <- brm(rating ~ quality + condition + (quality * condition) + (1 | ID) + (1 | science) + (quality | item), data = data)
+
+# my_bayes_explanations <- brm(rating ~ quality + condition + (quality * condition) + (1 | ID) + (quality * condition | item), data = data)
+
+print(my_bayes_explanations)
+```
+```{r echo=TRUE}
+
+#read original data
+original_data <- read.csv("../data/original_hopkins2016_data.csv", header = TRUE)
+
+#relable science and explanation level values to their full names
+original_data$science <- ifelse(original_data$science=="phys", "physics", original_data$science)
+original_data$science <- ifelse(original_data$science=="chem", "chemistry", original_data$science)
+original_data$science <- ifelse(original_data$science=="bio", "biology", original_data$science)
+original_data$science <- ifelse(original_data$science=="neuro", "neuroscience", original_data$science)
+original_data$science <- ifelse(original_data$science=="psych", "psychology", original_data$science)
+original_data$science <- ifelse(original_data$science=="soc", "social", original_data$science)
+original_data$condition <- ifelse(original_data$condition=="H", "Horizontal", original_data$condition)
+original_data$condition <- ifelse(original_data$condition=="2", "Reductive", original_data$condition)
+
+original_data$science <- factor(original_data$science, 
+                  levels = c("physics", "chemistry", "biology", "neuroscience", "psychology", "social"),
+                  labels = c("physics", "chemistry", "biology", "neuroscience", "psychology", "social"))
+original_data$quality <- factor(original_data$quality, 
+                  levels = c("good", "bad"),
+                  labels = c("good", "bad"))
+
+#group data frame by explanation quality, level, and scientific domain
+original_grouped <- original_data %>%
+  group_by(quality, condition, science) %>%
+  summarise(avg_rating = mean(rating),
+            sem_rating = sd(rating) / sqrt(n()))
+
+#plot bar graph faceted by scientific domain
+ggplot(original_grouped, aes(x=quality, y=avg_rating, fill=condition)) +
+  geom_bar(position="dodge", stat="identity") + 
+  scale_fill_brewer(palette="Set1") +
+  geom_errorbar(aes(ymin = (avg_rating - sem_rating), ymax = (avg_rating + sem_rating)), position = "dodge") +
+  facet_wrap(~science, nrow=1) +
+  ggthemes::theme_few() +
+  scale_y_continuous(name='explanation rating', limits=c(-3, 3), breaks=seq(-3, 3, 1)) +
+  theme(strip.text = element_text(size = 8, margin = margin()))
+
+```
+This graph illustrates the results of the first replication. Code is not reproduced here to minimize clutter, but can be accessed at the GitHub repository linked above in the "Summary of prior replication attempt" section.
+![Chuey (2019)](../data/firstrep.png)
+
+```{r echo=TRUE}
+
+#rescue graph
+data <- data_long
+replication_grouped <- data |> 
+  group_by(quality, Condition, science) |> 
+  summarise(avg_rating = mean(rating),
+            sem_rating = sd(rating) / sqrt(n()))
+
+replication_grouped$science <-   factor(replication_grouped$science, 
+      levels = c("physics", "chemistry", "biology", "neuroscience", "psychology", "social"))
+
+replication_grouped$quality <-
+  factor(replication_grouped$quality,
+         levels = c("good", "bad"))
+
+ggplot(replication_grouped, aes(x=quality, y=avg_rating, fill=Condition)) +
+  geom_bar(position="dodge", stat="identity") + 
+  scale_fill_brewer(palette="Set1") +
+  geom_errorbar(aes(ymin = (avg_rating - sem_rating), ymax = (avg_rating + sem_rating)), position = "dodge") +
+  facet_wrap(~science, nrow=1) +
+  ggthemes::theme_few() +
+  scale_y_continuous(name='explanation rating', limits=c(-3, 3), breaks=seq(-3, 3, 1)) +
+  theme(strip.text = element_text(size = 8, margin = margin()))
+
+```
+
 
 ## Discussion
 
@@ -322,6 +416,8 @@ I am currently having difficulty writing up the chunk of code for the mixed effe
 ### Summary of Replication Attempt
 
 <!-- Open the discussion section with a paragraph summarizing the primary result from the confirmatory analysis and the assessment of whether it replicated, partially replicated, or failed to replicate the original result. --> 
+
+This replication with the pilot sample (without exclusions for failing attention checks) actually finds a main effect of explanation quality, as well as an interaction effect between explanation level and explanation quality. However, there is no main effect of explanation level.
 
 ### Commentary
 
