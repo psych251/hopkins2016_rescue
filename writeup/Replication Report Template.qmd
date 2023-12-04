@@ -72,6 +72,8 @@ No power analysis or sample size justification was provided in the original pape
 
 A post-hoc power analysis of the original study with two independent study groups (reductive and horizonal explanations) with the quality of explanations as the main continuous effect and alpha at 0.05 yielded a post-hoc power of 16.5%. The post-hoc power analysis was conducted with G*Power 3.1.
 
+As explanation level was a between-subject manipulation, the power calculation can be reframed as the number of items tested rather than the number of participants in the study. In this case, each participant rates 12 explanations, and thus the number of explanations rated in each condition is 1008. The main analysis of a two-tailed t-test of two independent means thus gives us a post-hoc power of 78.4%.
+
 <!-- Check Hopkins 2019 and replication study for post-hoc power -->
 
 ### Planned Sample
@@ -80,7 +82,7 @@ A post-hoc power analysis of the original study with two independent study group
 
 Like the original and replication samples, English-speaking adult participants residing in the United States will be recruited online (via Prolific instead of MTurk). Participants who complete the task and pass both attention checks will be included in the final sample for analysis. Details about the attention checks can be found in the Procedure or Control sections below.
 
-However, unlike the replication, the planned sample will match the total recruited number of participants (n=319) rather than just matching the number of adults who passed attention checks. We will likely be expecting a high number of exclusions due to failed attention checks, just like the original study (60 participants) and the replication study (70 participants).
+We will be matching the original MTurk sample size due to the power analysis conducted above. However, we will need to be mindful of the number of exclusions due to failed attention checks, as there was a high number in both the original study (60 participants) and the replication study (70 participants).
 
 <!-- 2.5 times original sample size gives you 80% chance to reject 33% powered study -->
 
@@ -196,10 +198,11 @@ library(brms) #To run Bayesian supplementary analyses
 
 #### Import data
 raw_data <- read_survey("../data/pilotdata.csv")
+# raw_data <- read_survey("../data/pilotb.csv")
 
 #### Data exclusion / filtering
 raw_data <- raw_data |> 
-  select(-c(StartDate:Consent,'Feedback')) #delete columns not used in analysis
+  select(-c('Feedback')) #delete columns not used in analysis
 
 data_num <- raw_data |> 
   mutate(ID = 1:nrow(raw_data)) #add participant ID column
