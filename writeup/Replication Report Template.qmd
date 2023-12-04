@@ -148,6 +148,8 @@ The following procedure for the key analysis of interest is quoted from the orig
 
 Similar to the replication but not the original study, the between-participants variable "sample" will not be available for analysis as there will not be an undergraduate population recruited.
 
+The key analysis of interest is a t-test within the lmerTest R package for the difference between means of ratings for reductive explanations and horizontal explanations. This will yield a t-test statistic with the corresponding p-value.
+
 ### Differences from Original Study and 1st replication
 
 <!-- Explicitly describe known differences in sample, setting, procedure, and analysis plan from original study.  The goal, of course, is to minimize those differences, but differences will inevitably occur.  Also, note whether such differences are anticipated to make a difference based on claims in the original article or subsequent published research on the conditions for obtaining the effect. -->
@@ -323,7 +325,11 @@ This replication project does not have different samples of participants. Theref
 
 my_explanations <- lmer(rating ~ quality + condition + (quality * condition) + (1 | ID) + (1 | science) + (quality | item), data = data)
 
-summary(my_explanations)
+# summary(my_explanations)
+
+lmert <- lmerTest::lmer(rating ~ quality + condition + (quality * condition) + (1 | ID) + (1 | science) + (quality | item), data = data)
+
+summary(lmert)
 
 ```
 

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Howard Chiu (howardchiu@stanford.edu)">
-<meta name="dcterms.date" content="2023-12-03">
+<meta name="dcterms.date" content="2023-12-04">
 
 <title>Replication of Study 1 by Hopkins, Weisberg, and Taylor (2016, Cognition)</title>
 <style>
@@ -140,7 +140,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">December 3, 2023</p>
+      <p class="date">December 4, 2023</p>
     </div>
   </div>
   
@@ -274,6 +274,7 @@ How much power does your planned sample have for original effect? For an attenua
 <p>Data from the explanations task were analyzed with a mixed-effects linear regression model (using the lme4 package in R) predicting the rating given on each trial from the sample (MTurk, undergraduates), the quality of the explanation (good, bad), the explanation level (horizontal, reductive), and the science from which the phenomenon was drawn (physics, chemistry, biology, neuroscience, psychology, and social science). Sample and explanation level were between-participants variables and quality and science were within-participants. All possible interactions between variables were tested.</p>
 </blockquote>
 <p>Similar to the replication but not the original study, the between-participants variable “sample” will not be available for analysis as there will not be an undergraduate population recruited.</p>
+<p>The key analysis of interest is a t-test within the lmerTest R package for the difference between means of ratings for reductive explanations and horizontal explanations. This will yield a t-test statistic with the corresponding p-value.</p>
 </section>
 <section id="differences-from-original-study-and-1st-replication" class="level3">
 <h3 class="anchored" data-anchor-id="differences-from-original-study-and-1st-replication">Differences from Original Study and 1st replication</h3>
@@ -376,81 +377,83 @@ The following object is masked from 'package:stats':
 ── Column specification ────────────────────────────────────────────────────────
 cols(
   .default = col_double(),
-  StartDate = col_character(),
-  EndDate = col_character(),
-  Status = col_character(),
-  IPAddress = col_character(),
   Finished = col_logical(),
-  RecordedDate = col_character(),
-  ResponseId = col_character(),
-  RecipientLastName = col_logical(),
-  RecipientFirstName = col_logical(),
-  RecipientEmail = col_logical(),
-  ExternalReference = col_logical(),
-  DistributionChannel = col_character(),
-  UserLanguage = col_character(),
-  Consent = col_character(),
   `P1-RB_1` = col_logical(),
   `C2-RG_1` = col_logical(),
   `B2-RG_1` = col_logical(),
   `N2-RG_1` = col_logical(),
   `Y1-RB_1` = col_logical(),
-  `S1-RB_1` = col_logical()
-  # ... with 25 more columns
+  `S1-RB_1` = col_logical(),
+  `P2-RG_1` = col_logical(),
+  `C1-RB_1` = col_logical(),
+  `B1-RB_1` = col_logical(),
+  `N1-RB_1` = col_logical(),
+  `Y2-RG_1` = col_logical(),
+  `S2-RG_1` = col_logical(),
+  `P3-RB_1` = col_logical(),
+  `C4-RG_1` = col_logical(),
+  `B4-RG_1` = col_logical(),
+  `N4-RG_1` = col_logical(),
+  `Y3-RB_1` = col_logical(),
+  `S3-RB_1` = col_logical(),
+  `P4-RG_1` = col_logical()
+  # ... with 12 more columns
 )
 ℹ Use `spec()` for the full column specifications.</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Data exclusion / filtering</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>raw_data <span class="ot">&lt;-</span> raw_data <span class="sc">|&gt;</span> </span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(StartDate<span class="sc">:</span>Consent,<span class="st">'Feedback'</span>)) <span class="co">#delete columns not used in analysis</span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>data_num <span class="ot">&lt;-</span> raw_data <span class="sc">|&gt;</span> </span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">ID =</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(raw_data)) <span class="co">#add participant ID column</span></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>data_num <span class="ot">&lt;-</span> data_num <span class="sc">|&gt;</span> </span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Att_1, <span class="fu">everything</span>()) <span class="co">#move attention check 2 to front of data frame</span></span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="do">#### Prepare data for analysis - create columns etc.</span></span>
-<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="co">#convert to long format</span></span>
-<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>data_long <span class="ot">&lt;-</span> data_num <span class="sc">|&gt;</span> </span>
-<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="st">'P1-HG_1'</span><span class="sc">:</span><span class="st">'S4-RB_1'</span>, <span class="at">names_to =</span> <span class="st">"full_item"</span>, <span class="at">values_to =</span> <span class="st">"rating"</span>, <span class="at">values_drop_na=</span><span class="cn">TRUE</span>)</span>
-<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a><span class="co">#specify item attributes</span></span>
-<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>data_long <span class="ot">&lt;-</span> data_long <span class="sc">|&gt;</span> </span>
-<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">science =</span> <span class="fu">substr</span>(full_item, <span class="at">start=</span><span class="dv">1</span>, <span class="at">stop=</span><span class="dv">1</span>))</span>
-<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>data_long <span class="ot">&lt;-</span> data_long <span class="sc">|&gt;</span> </span>
-<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">item =</span> <span class="fu">substr</span>(full_item, <span class="at">start=</span><span class="dv">1</span>, <span class="at">stop=</span><span class="dv">2</span>))</span>
-<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>data_long <span class="ot">&lt;-</span> data_long <span class="sc">|&gt;</span> </span>
-<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">quality =</span> <span class="fu">substr</span>(full_item, <span class="at">start=</span><span class="dv">5</span>, <span class="at">stop=</span><span class="dv">5</span>))</span>
-<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a>data_long <span class="ot">&lt;-</span> data_long <span class="sc">|&gt;</span> </span>
-<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>full_item)</span>
-<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a>data_long <span class="ot">&lt;-</span> data_long <span class="sc">|&gt;</span> </span>
-<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(rating<span class="sc">!=</span><span class="st">""</span>)</span>
-<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a><span class="co">#recode item names</span></span>
-<span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a>data_long<span class="sc">$</span>quality <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(data_long<span class="sc">$</span>quality<span class="sc">==</span><span class="st">"G"</span>, <span class="st">"good"</span>, <span class="st">"bad"</span>)</span>
-<span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-35"><a href="#cb11-35" aria-hidden="true" tabindex="-1"></a>data_long<span class="sc">$</span>science <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(data_long<span class="sc">$</span>science<span class="sc">==</span><span class="st">"P"</span>, <span class="st">"physics"</span>, data_long<span class="sc">$</span>science)</span>
-<span id="cb11-36"><a href="#cb11-36" aria-hidden="true" tabindex="-1"></a>data_long<span class="sc">$</span>science <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(data_long<span class="sc">$</span>science<span class="sc">==</span><span class="st">"C"</span>, <span class="st">"chemistry"</span>, data_long<span class="sc">$</span>science)</span>
-<span id="cb11-37"><a href="#cb11-37" aria-hidden="true" tabindex="-1"></a>data_long<span class="sc">$</span>science <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(data_long<span class="sc">$</span>science<span class="sc">==</span><span class="st">"B"</span>, <span class="st">"biology"</span>, data_long<span class="sc">$</span>science)</span>
-<span id="cb11-38"><a href="#cb11-38" aria-hidden="true" tabindex="-1"></a>data_long<span class="sc">$</span>science <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(data_long<span class="sc">$</span>science<span class="sc">==</span><span class="st">"N"</span>, <span class="st">"neuroscience"</span>, data_long<span class="sc">$</span>science)</span>
-<span id="cb11-39"><a href="#cb11-39" aria-hidden="true" tabindex="-1"></a>data_long<span class="sc">$</span>science <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(data_long<span class="sc">$</span>science<span class="sc">==</span><span class="st">"Y"</span>, <span class="st">"psychology"</span>, data_long<span class="sc">$</span>science)</span>
-<span id="cb11-40"><a href="#cb11-40" aria-hidden="true" tabindex="-1"></a>data_long<span class="sc">$</span>science <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(data_long<span class="sc">$</span>science<span class="sc">==</span><span class="st">"S"</span>, <span class="st">"social"</span>, data_long<span class="sc">$</span>science)</span>
-<span id="cb11-41"><a href="#cb11-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-42"><a href="#cb11-42" aria-hidden="true" tabindex="-1"></a><span class="co">#convert columns to intended data types for analysis</span></span>
-<span id="cb11-43"><a href="#cb11-43" aria-hidden="true" tabindex="-1"></a>data_long<span class="sc">$</span>rating <span class="ot">&lt;-</span> <span class="fu">as.integer</span>(<span class="fu">as.character</span>(data_long<span class="sc">$</span>rating))</span>
-<span id="cb11-44"><a href="#cb11-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-45"><a href="#cb11-45" aria-hidden="true" tabindex="-1"></a><span class="co">#exclude participants who failed attention check 1</span></span>
-<span id="cb11-46"><a href="#cb11-46" aria-hidden="true" tabindex="-1"></a><span class="co"># data_excluded_both &lt;- data_long |&gt; </span></span>
-<span id="cb11-47"><a href="#cb11-47" aria-hidden="true" tabindex="-1"></a><span class="co">#  filter(Slider1_1==0)</span></span>
-<span id="cb11-48"><a href="#cb11-48" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-49"><a href="#cb11-49" aria-hidden="true" tabindex="-1"></a><span class="co">#exclude participants who failed attention check 2</span></span>
-<span id="cb11-50"><a href="#cb11-50" aria-hidden="true" tabindex="-1"></a><span class="co"># data_excluded_both &lt;- data_excluded_both |&gt; </span></span>
-<span id="cb11-51"><a href="#cb11-51" aria-hidden="true" tabindex="-1"></a><span class="co">#  filter(Att_1==3)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># raw_data &lt;- read_survey("../data/pilotb.csv")</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="do">#### Data exclusion / filtering</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>raw_data <span class="ot">&lt;-</span> raw_data <span class="sc">|&gt;</span> </span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(<span class="st">'Feedback'</span>)) <span class="co">#delete columns not used in analysis</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>data_num <span class="ot">&lt;-</span> raw_data <span class="sc">|&gt;</span> </span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">ID =</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(raw_data)) <span class="co">#add participant ID column</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>data_num <span class="ot">&lt;-</span> data_num <span class="sc">|&gt;</span> </span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Att_1, <span class="fu">everything</span>()) <span class="co">#move attention check 2 to front of data frame</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="do">#### Prepare data for analysis - create columns etc.</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="co">#convert to long format</span></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>data_long <span class="ot">&lt;-</span> data_num <span class="sc">|&gt;</span> </span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="st">'P1-HG_1'</span><span class="sc">:</span><span class="st">'S4-RB_1'</span>, <span class="at">names_to =</span> <span class="st">"full_item"</span>, <span class="at">values_to =</span> <span class="st">"rating"</span>, <span class="at">values_drop_na=</span><span class="cn">TRUE</span>)</span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a><span class="co">#specify item attributes</span></span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>data_long <span class="ot">&lt;-</span> data_long <span class="sc">|&gt;</span> </span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">science =</span> <span class="fu">substr</span>(full_item, <span class="at">start=</span><span class="dv">1</span>, <span class="at">stop=</span><span class="dv">1</span>))</span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>data_long <span class="ot">&lt;-</span> data_long <span class="sc">|&gt;</span> </span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">item =</span> <span class="fu">substr</span>(full_item, <span class="at">start=</span><span class="dv">1</span>, <span class="at">stop=</span><span class="dv">2</span>))</span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a>data_long <span class="ot">&lt;-</span> data_long <span class="sc">|&gt;</span> </span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">quality =</span> <span class="fu">substr</span>(full_item, <span class="at">start=</span><span class="dv">5</span>, <span class="at">stop=</span><span class="dv">5</span>))</span>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a>data_long <span class="ot">&lt;-</span> data_long <span class="sc">|&gt;</span> </span>
+<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>full_item)</span>
+<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a>data_long <span class="ot">&lt;-</span> data_long <span class="sc">|&gt;</span> </span>
+<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(rating<span class="sc">!=</span><span class="st">""</span>)</span>
+<span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a><span class="co">#recode item names</span></span>
+<span id="cb11-35"><a href="#cb11-35" aria-hidden="true" tabindex="-1"></a>data_long<span class="sc">$</span>quality <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(data_long<span class="sc">$</span>quality<span class="sc">==</span><span class="st">"G"</span>, <span class="st">"good"</span>, <span class="st">"bad"</span>)</span>
+<span id="cb11-36"><a href="#cb11-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-37"><a href="#cb11-37" aria-hidden="true" tabindex="-1"></a>data_long<span class="sc">$</span>science <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(data_long<span class="sc">$</span>science<span class="sc">==</span><span class="st">"P"</span>, <span class="st">"physics"</span>, data_long<span class="sc">$</span>science)</span>
+<span id="cb11-38"><a href="#cb11-38" aria-hidden="true" tabindex="-1"></a>data_long<span class="sc">$</span>science <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(data_long<span class="sc">$</span>science<span class="sc">==</span><span class="st">"C"</span>, <span class="st">"chemistry"</span>, data_long<span class="sc">$</span>science)</span>
+<span id="cb11-39"><a href="#cb11-39" aria-hidden="true" tabindex="-1"></a>data_long<span class="sc">$</span>science <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(data_long<span class="sc">$</span>science<span class="sc">==</span><span class="st">"B"</span>, <span class="st">"biology"</span>, data_long<span class="sc">$</span>science)</span>
+<span id="cb11-40"><a href="#cb11-40" aria-hidden="true" tabindex="-1"></a>data_long<span class="sc">$</span>science <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(data_long<span class="sc">$</span>science<span class="sc">==</span><span class="st">"N"</span>, <span class="st">"neuroscience"</span>, data_long<span class="sc">$</span>science)</span>
+<span id="cb11-41"><a href="#cb11-41" aria-hidden="true" tabindex="-1"></a>data_long<span class="sc">$</span>science <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(data_long<span class="sc">$</span>science<span class="sc">==</span><span class="st">"Y"</span>, <span class="st">"psychology"</span>, data_long<span class="sc">$</span>science)</span>
+<span id="cb11-42"><a href="#cb11-42" aria-hidden="true" tabindex="-1"></a>data_long<span class="sc">$</span>science <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(data_long<span class="sc">$</span>science<span class="sc">==</span><span class="st">"S"</span>, <span class="st">"social"</span>, data_long<span class="sc">$</span>science)</span>
+<span id="cb11-43"><a href="#cb11-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-44"><a href="#cb11-44" aria-hidden="true" tabindex="-1"></a><span class="co">#convert columns to intended data types for analysis</span></span>
+<span id="cb11-45"><a href="#cb11-45" aria-hidden="true" tabindex="-1"></a>data_long<span class="sc">$</span>rating <span class="ot">&lt;-</span> <span class="fu">as.integer</span>(<span class="fu">as.character</span>(data_long<span class="sc">$</span>rating))</span>
+<span id="cb11-46"><a href="#cb11-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-47"><a href="#cb11-47" aria-hidden="true" tabindex="-1"></a><span class="co">#exclude participants who failed attention check 1</span></span>
+<span id="cb11-48"><a href="#cb11-48" aria-hidden="true" tabindex="-1"></a><span class="co"># data_excluded_both &lt;- data_long |&gt; </span></span>
+<span id="cb11-49"><a href="#cb11-49" aria-hidden="true" tabindex="-1"></a><span class="co">#  filter(Slider1_1==0)</span></span>
+<span id="cb11-50"><a href="#cb11-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-51"><a href="#cb11-51" aria-hidden="true" tabindex="-1"></a><span class="co">#exclude participants who failed attention check 2</span></span>
+<span id="cb11-52"><a href="#cb11-52" aria-hidden="true" tabindex="-1"></a><span class="co"># data_excluded_both &lt;- data_excluded_both |&gt; </span></span>
+<span id="cb11-53"><a href="#cb11-53" aria-hidden="true" tabindex="-1"></a><span class="co">#  filter(Att_1==3)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="results-of-control-measures" class="level3">
@@ -515,7 +518,13 @@ cols(
 <div class="cell-output cell-output-stderr">
 <pre><code>boundary (singular) fit: see help('isSingular')</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(my_explanations)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># summary(my_explanations)</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>lmert <span class="ot">&lt;-</span> lmerTest<span class="sc">::</span><span class="fu">lmer</span>(rating <span class="sc">~</span> quality <span class="sc">+</span> condition <span class="sc">+</span> (quality <span class="sc">*</span> condition) <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> ID) <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> science) <span class="sc">+</span> (quality <span class="sc">|</span> item), <span class="at">data =</span> data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>boundary (singular) fit: see help('isSingular')</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lmert)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Linear mixed model fit by REML. t-tests use Satterthwaite's method [
 lmerModLmerTest]
@@ -562,7 +571,7 @@ boundary (singular) fit: see help('isSingular')</code></pre>
 <!-- Any follow-up analyses desired (not required). -->
 <p>I repeated the analyses using Bayesian modelling, and obtained similar results as the lmer.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>my_bayes_explanations <span class="ot">&lt;-</span> <span class="fu">brm</span>(rating <span class="sc">~</span> quality <span class="sc">+</span> condition <span class="sc">+</span> (quality <span class="sc">*</span> condition) <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> ID) <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> science) <span class="sc">+</span> (quality <span class="sc">|</span> item), <span class="at">data =</span> data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>my_bayes_explanations <span class="ot">&lt;-</span> <span class="fu">brm</span>(rating <span class="sc">~</span> quality <span class="sc">+</span> condition <span class="sc">+</span> (quality <span class="sc">*</span> condition) <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> ID) <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> science) <span class="sc">+</span> (quality <span class="sc">|</span> item), <span class="at">data =</span> data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Compiling Stan program...</code></pre>
 </div>
@@ -573,8 +582,8 @@ boundary (singular) fit: see help('isSingular')</code></pre>
 <pre><code>
 SAMPLING FOR MODEL 'anon_model' NOW (CHAIN 1).
 Chain 1: 
-Chain 1: Gradient evaluation took 8.1e-05 seconds
-Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0.81 seconds.
+Chain 1: Gradient evaluation took 0.0001 seconds
+Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 1 seconds.
 Chain 1: Adjust your expectations accordingly!
 Chain 1: 
 Chain 1: 
@@ -591,15 +600,15 @@ Chain 1: Iteration: 1600 / 2000 [ 80%]  (Sampling)
 Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)
 Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)
 Chain 1: 
-Chain 1:  Elapsed Time: 0.414 seconds (Warm-up)
-Chain 1:                0.23 seconds (Sampling)
-Chain 1:                0.644 seconds (Total)
+Chain 1:  Elapsed Time: 0.458 seconds (Warm-up)
+Chain 1:                0.4 seconds (Sampling)
+Chain 1:                0.858 seconds (Total)
 Chain 1: 
 
 SAMPLING FOR MODEL 'anon_model' NOW (CHAIN 2).
 Chain 2: 
-Chain 2: Gradient evaluation took 1.6e-05 seconds
-Chain 2: 1000 transitions using 10 leapfrog steps per transition would take 0.16 seconds.
+Chain 2: Gradient evaluation took 2.2e-05 seconds
+Chain 2: 1000 transitions using 10 leapfrog steps per transition would take 0.22 seconds.
 Chain 2: Adjust your expectations accordingly!
 Chain 2: 
 Chain 2: 
@@ -616,15 +625,15 @@ Chain 2: Iteration: 1600 / 2000 [ 80%]  (Sampling)
 Chain 2: Iteration: 1800 / 2000 [ 90%]  (Sampling)
 Chain 2: Iteration: 2000 / 2000 [100%]  (Sampling)
 Chain 2: 
-Chain 2:  Elapsed Time: 0.468 seconds (Warm-up)
-Chain 2:                0.271 seconds (Sampling)
-Chain 2:                0.739 seconds (Total)
+Chain 2:  Elapsed Time: 0.434 seconds (Warm-up)
+Chain 2:                0.397 seconds (Sampling)
+Chain 2:                0.831 seconds (Total)
 Chain 2: 
 
 SAMPLING FOR MODEL 'anon_model' NOW (CHAIN 3).
 Chain 3: 
-Chain 3: Gradient evaluation took 1.8e-05 seconds
-Chain 3: 1000 transitions using 10 leapfrog steps per transition would take 0.18 seconds.
+Chain 3: Gradient evaluation took 1.4e-05 seconds
+Chain 3: 1000 transitions using 10 leapfrog steps per transition would take 0.14 seconds.
 Chain 3: Adjust your expectations accordingly!
 Chain 3: 
 Chain 3: 
@@ -641,15 +650,15 @@ Chain 3: Iteration: 1600 / 2000 [ 80%]  (Sampling)
 Chain 3: Iteration: 1800 / 2000 [ 90%]  (Sampling)
 Chain 3: Iteration: 2000 / 2000 [100%]  (Sampling)
 Chain 3: 
-Chain 3:  Elapsed Time: 0.384 seconds (Warm-up)
-Chain 3:                0.407 seconds (Sampling)
-Chain 3:                0.791 seconds (Total)
+Chain 3:  Elapsed Time: 0.431 seconds (Warm-up)
+Chain 3:                0.401 seconds (Sampling)
+Chain 3:                0.832 seconds (Total)
 Chain 3: 
 
 SAMPLING FOR MODEL 'anon_model' NOW (CHAIN 4).
 Chain 4: 
-Chain 4: Gradient evaluation took 2.9e-05 seconds
-Chain 4: 1000 transitions using 10 leapfrog steps per transition would take 0.29 seconds.
+Chain 4: Gradient evaluation took 1.8e-05 seconds
+Chain 4: 1000 transitions using 10 leapfrog steps per transition would take 0.18 seconds.
 Chain 4: Adjust your expectations accordingly!
 Chain 4: 
 Chain 4: 
@@ -666,27 +675,14 @@ Chain 4: Iteration: 1600 / 2000 [ 80%]  (Sampling)
 Chain 4: Iteration: 1800 / 2000 [ 90%]  (Sampling)
 Chain 4: Iteration: 2000 / 2000 [100%]  (Sampling)
 Chain 4: 
-Chain 4:  Elapsed Time: 0.39 seconds (Warm-up)
-Chain 4:                0.332 seconds (Sampling)
-Chain 4:                0.722 seconds (Total)
+Chain 4:  Elapsed Time: 0.403 seconds (Warm-up)
+Chain 4:                0.393 seconds (Sampling)
+Chain 4:                0.796 seconds (Total)
 Chain 4: </code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: There were 1 divergent transitions after warmup. See
-https://mc-stan.org/misc/warnings.html#divergent-transitions-after-warmup
-to find out why this is a problem and how to eliminate them.</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Examine the pairs() plot to diagnose sampling problems</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># my_bayes_explanations &lt;- brm(rating ~ quality + condition + (quality * condition) + (1 | ID) + (quality * condition | item), data = data)</span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(my_bayes_explanations)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: There were 1 divergent transitions after warmup. Increasing
-adapt_delta above 0.8 may help. See
-http://mc-stan.org/misc/warnings.html#divergent-transitions-after-warmup</code></pre>
-</div>
 <div class="cell-output cell-output-stdout">
 <pre><code> Family: gaussian 
   Links: mu = identity; sigma = identity 
@@ -698,32 +694,32 @@ Formula: rating ~ quality + condition + (quality * condition) + (1 | ID) + (1 | 
 Group-Level Effects: 
 ~ID (Number of levels: 15) 
               Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
-sd(Intercept)     0.43      0.24     0.04     0.96 1.00     1144     1373
+sd(Intercept)     0.43      0.24     0.03     0.94 1.00     1219     1521
 
 ~item (Number of levels: 24) 
                         Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS
-sd(Intercept)               0.59      0.25     0.09     1.09 1.00     1045
-sd(quality1)                0.50      0.33     0.03     1.22 1.00     1596
-cor(Intercept,quality1)    -0.42      0.51    -0.99     0.83 1.00     2125
+sd(Intercept)               0.60      0.24     0.12     1.09 1.00     1105
+sd(quality1)                0.50      0.33     0.03     1.25 1.00     2158
+cor(Intercept,quality1)    -0.43      0.50    -0.99     0.82 1.00     3634
                         Tail_ESS
-sd(Intercept)               1195
-sd(quality1)                1780
-cor(Intercept,quality1)     2187
+sd(Intercept)               1492
+sd(quality1)                2338
+cor(Intercept,quality1)     3095
 
 ~science (Number of levels: 6) 
               Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
-sd(Intercept)     0.39      0.32     0.02     1.21 1.00     1349     1748
+sd(Intercept)     0.38      0.31     0.02     1.17 1.00     1334     2213
 
 Population-Level Effects: 
                     Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
-Intercept               0.84      0.30     0.23     1.46 1.00     1909     1526
-quality1                1.76      0.31     1.16     2.37 1.00     3317     2638
-condition1             -0.29      0.41    -1.08     0.51 1.00     2256     2228
-quality1:condition1     1.35      0.64     0.10     2.61 1.00     3464     2849
+Intercept               0.84      0.30     0.25     1.44 1.00     2756     2271
+quality1                1.75      0.32     1.14     2.39 1.00     6470     3006
+condition1             -0.29      0.40    -1.12     0.52 1.00     4241     2943
+quality1:condition1     1.36      0.64     0.13     2.62 1.00     5061     2871
 
 Family Specific Parameters: 
       Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
-sigma     1.72      0.12     1.50     1.96 1.00     2057     2440
+sigma     1.71      0.11     1.51     1.95 1.00     2738     3057
 
 Draws were sampled using sampling(NUTS). For each parameter, Bulk_ESS
 and Tail_ESS are effective sample size measures, and Rhat is the potential
@@ -731,75 +727,75 @@ scale reduction factor on split chains (at convergence, Rhat = 1).</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co">#read original data</span></span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>original_data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"../data/original_hopkins2016_data.csv"</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="co">#relable science and explanation level values to their full names</span></span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>original_data<span class="sc">$</span>science <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(original_data<span class="sc">$</span>science<span class="sc">==</span><span class="st">"phys"</span>, <span class="st">"physics"</span>, original_data<span class="sc">$</span>science)</span>
-<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>original_data<span class="sc">$</span>science <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(original_data<span class="sc">$</span>science<span class="sc">==</span><span class="st">"chem"</span>, <span class="st">"chemistry"</span>, original_data<span class="sc">$</span>science)</span>
-<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>original_data<span class="sc">$</span>science <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(original_data<span class="sc">$</span>science<span class="sc">==</span><span class="st">"bio"</span>, <span class="st">"biology"</span>, original_data<span class="sc">$</span>science)</span>
-<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>original_data<span class="sc">$</span>science <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(original_data<span class="sc">$</span>science<span class="sc">==</span><span class="st">"neuro"</span>, <span class="st">"neuroscience"</span>, original_data<span class="sc">$</span>science)</span>
-<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>original_data<span class="sc">$</span>science <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(original_data<span class="sc">$</span>science<span class="sc">==</span><span class="st">"psych"</span>, <span class="st">"psychology"</span>, original_data<span class="sc">$</span>science)</span>
-<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>original_data<span class="sc">$</span>science <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(original_data<span class="sc">$</span>science<span class="sc">==</span><span class="st">"soc"</span>, <span class="st">"social"</span>, original_data<span class="sc">$</span>science)</span>
-<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>original_data<span class="sc">$</span>condition <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(original_data<span class="sc">$</span>condition<span class="sc">==</span><span class="st">"H"</span>, <span class="st">"Horizontal"</span>, original_data<span class="sc">$</span>condition)</span>
-<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>original_data<span class="sc">$</span>condition <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(original_data<span class="sc">$</span>condition<span class="sc">==</span><span class="st">"2"</span>, <span class="st">"Reductive"</span>, original_data<span class="sc">$</span>condition)</span>
-<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a>original_data<span class="sc">$</span>science <span class="ot">&lt;-</span> <span class="fu">factor</span>(original_data<span class="sc">$</span>science, </span>
-<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a>                  <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"physics"</span>, <span class="st">"chemistry"</span>, <span class="st">"biology"</span>, <span class="st">"neuroscience"</span>, <span class="st">"psychology"</span>, <span class="st">"social"</span>),</span>
-<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a>                  <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"physics"</span>, <span class="st">"chemistry"</span>, <span class="st">"biology"</span>, <span class="st">"neuroscience"</span>, <span class="st">"psychology"</span>, <span class="st">"social"</span>))</span>
-<span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a>original_data<span class="sc">$</span>quality <span class="ot">&lt;-</span> <span class="fu">factor</span>(original_data<span class="sc">$</span>quality, </span>
-<span id="cb27-18"><a href="#cb27-18" aria-hidden="true" tabindex="-1"></a>                  <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"good"</span>, <span class="st">"bad"</span>),</span>
-<span id="cb27-19"><a href="#cb27-19" aria-hidden="true" tabindex="-1"></a>                  <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"good"</span>, <span class="st">"bad"</span>))</span>
-<span id="cb27-20"><a href="#cb27-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-21"><a href="#cb27-21" aria-hidden="true" tabindex="-1"></a><span class="co">#group data frame by explanation quality, level, and scientific domain</span></span>
-<span id="cb27-22"><a href="#cb27-22" aria-hidden="true" tabindex="-1"></a>original_grouped <span class="ot">&lt;-</span> original_data <span class="sc">%&gt;%</span></span>
-<span id="cb27-23"><a href="#cb27-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(quality, condition, science) <span class="sc">%&gt;%</span></span>
-<span id="cb27-24"><a href="#cb27-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">avg_rating =</span> <span class="fu">mean</span>(rating),</span>
-<span id="cb27-25"><a href="#cb27-25" aria-hidden="true" tabindex="-1"></a>            <span class="at">sem_rating =</span> <span class="fu">sd</span>(rating) <span class="sc">/</span> <span class="fu">sqrt</span>(<span class="fu">n</span>()))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co">#read original data</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>original_data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"../data/original_hopkins2016_data.csv"</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="co">#relable science and explanation level values to their full names</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>original_data<span class="sc">$</span>science <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(original_data<span class="sc">$</span>science<span class="sc">==</span><span class="st">"phys"</span>, <span class="st">"physics"</span>, original_data<span class="sc">$</span>science)</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>original_data<span class="sc">$</span>science <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(original_data<span class="sc">$</span>science<span class="sc">==</span><span class="st">"chem"</span>, <span class="st">"chemistry"</span>, original_data<span class="sc">$</span>science)</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>original_data<span class="sc">$</span>science <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(original_data<span class="sc">$</span>science<span class="sc">==</span><span class="st">"bio"</span>, <span class="st">"biology"</span>, original_data<span class="sc">$</span>science)</span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>original_data<span class="sc">$</span>science <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(original_data<span class="sc">$</span>science<span class="sc">==</span><span class="st">"neuro"</span>, <span class="st">"neuroscience"</span>, original_data<span class="sc">$</span>science)</span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>original_data<span class="sc">$</span>science <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(original_data<span class="sc">$</span>science<span class="sc">==</span><span class="st">"psych"</span>, <span class="st">"psychology"</span>, original_data<span class="sc">$</span>science)</span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>original_data<span class="sc">$</span>science <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(original_data<span class="sc">$</span>science<span class="sc">==</span><span class="st">"soc"</span>, <span class="st">"social"</span>, original_data<span class="sc">$</span>science)</span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>original_data<span class="sc">$</span>condition <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(original_data<span class="sc">$</span>condition<span class="sc">==</span><span class="st">"H"</span>, <span class="st">"Horizontal"</span>, original_data<span class="sc">$</span>condition)</span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>original_data<span class="sc">$</span>condition <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(original_data<span class="sc">$</span>condition<span class="sc">==</span><span class="st">"2"</span>, <span class="st">"Reductive"</span>, original_data<span class="sc">$</span>condition)</span>
+<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a>original_data<span class="sc">$</span>science <span class="ot">&lt;-</span> <span class="fu">factor</span>(original_data<span class="sc">$</span>science, </span>
+<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a>                  <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"physics"</span>, <span class="st">"chemistry"</span>, <span class="st">"biology"</span>, <span class="st">"neuroscience"</span>, <span class="st">"psychology"</span>, <span class="st">"social"</span>),</span>
+<span id="cb26-16"><a href="#cb26-16" aria-hidden="true" tabindex="-1"></a>                  <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"physics"</span>, <span class="st">"chemistry"</span>, <span class="st">"biology"</span>, <span class="st">"neuroscience"</span>, <span class="st">"psychology"</span>, <span class="st">"social"</span>))</span>
+<span id="cb26-17"><a href="#cb26-17" aria-hidden="true" tabindex="-1"></a>original_data<span class="sc">$</span>quality <span class="ot">&lt;-</span> <span class="fu">factor</span>(original_data<span class="sc">$</span>quality, </span>
+<span id="cb26-18"><a href="#cb26-18" aria-hidden="true" tabindex="-1"></a>                  <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"good"</span>, <span class="st">"bad"</span>),</span>
+<span id="cb26-19"><a href="#cb26-19" aria-hidden="true" tabindex="-1"></a>                  <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"good"</span>, <span class="st">"bad"</span>))</span>
+<span id="cb26-20"><a href="#cb26-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-21"><a href="#cb26-21" aria-hidden="true" tabindex="-1"></a><span class="co">#group data frame by explanation quality, level, and scientific domain</span></span>
+<span id="cb26-22"><a href="#cb26-22" aria-hidden="true" tabindex="-1"></a>original_grouped <span class="ot">&lt;-</span> original_data <span class="sc">%&gt;%</span></span>
+<span id="cb26-23"><a href="#cb26-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(quality, condition, science) <span class="sc">%&gt;%</span></span>
+<span id="cb26-24"><a href="#cb26-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">avg_rating =</span> <span class="fu">mean</span>(rating),</span>
+<span id="cb26-25"><a href="#cb26-25" aria-hidden="true" tabindex="-1"></a>            <span class="at">sem_rating =</span> <span class="fu">sd</span>(rating) <span class="sc">/</span> <span class="fu">sqrt</span>(<span class="fu">n</span>()))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>`summarise()` has grouped output by 'quality', 'condition'. You can override
 using the `.groups` argument.</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co">#plot bar graph faceted by scientific domain</span></span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(original_grouped, <span class="fu">aes</span>(<span class="at">x=</span>quality, <span class="at">y=</span>avg_rating, <span class="at">fill=</span>condition)) <span class="sc">+</span></span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position=</span><span class="st">"dodge"</span>, <span class="at">stat=</span><span class="st">"identity"</span>) <span class="sc">+</span> </span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette=</span><span class="st">"Set1"</span>) <span class="sc">+</span></span>
-<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> (avg_rating <span class="sc">-</span> sem_rating), <span class="at">ymax =</span> (avg_rating <span class="sc">+</span> sem_rating)), <span class="at">position =</span> <span class="st">"dodge"</span>) <span class="sc">+</span></span>
-<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>science, <span class="at">nrow=</span><span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>  ggthemes<span class="sc">::</span><span class="fu">theme_few</span>() <span class="sc">+</span></span>
-<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">name=</span><span class="st">'explanation rating'</span>, <span class="at">limits=</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">3</span>, <span class="dv">3</span>), <span class="at">breaks=</span><span class="fu">seq</span>(<span class="sc">-</span><span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">8</span>, <span class="at">margin =</span> <span class="fu">margin</span>()))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co">#plot bar graph faceted by scientific domain</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(original_grouped, <span class="fu">aes</span>(<span class="at">x=</span>quality, <span class="at">y=</span>avg_rating, <span class="at">fill=</span>condition)) <span class="sc">+</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position=</span><span class="st">"dodge"</span>, <span class="at">stat=</span><span class="st">"identity"</span>) <span class="sc">+</span> </span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette=</span><span class="st">"Set1"</span>) <span class="sc">+</span></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> (avg_rating <span class="sc">-</span> sem_rating), <span class="at">ymax =</span> (avg_rating <span class="sc">+</span> sem_rating)), <span class="at">position =</span> <span class="st">"dodge"</span>) <span class="sc">+</span></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>science, <span class="at">nrow=</span><span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>  ggthemes<span class="sc">::</span><span class="fu">theme_few</span>() <span class="sc">+</span></span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">name=</span><span class="st">'explanation rating'</span>, <span class="at">limits=</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">3</span>, <span class="dv">3</span>), <span class="at">breaks=</span><span class="fu">seq</span>(<span class="sc">-</span><span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">8</span>, <span class="at">margin =</span> <span class="fu">margin</span>()))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="Replication-Report-Template_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>This graph illustrates the results of the first replication. Code is not reproduced here to minimize clutter, but can be accessed at the GitHub repository linked above in the “Summary of prior replication attempt” section. <img src="../data/firstrep.png" class="img-fluid" alt="Chuey (2019)"></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co">#rescue graph</span></span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data_long</span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>replication_grouped <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span> </span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(quality, Condition, science) <span class="sc">|&gt;</span> </span>
-<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">avg_rating =</span> <span class="fu">mean</span>(rating),</span>
-<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">sem_rating =</span> <span class="fu">sd</span>(rating) <span class="sc">/</span> <span class="fu">sqrt</span>(<span class="fu">n</span>()))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co">#rescue graph</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data_long</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>replication_grouped <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span> </span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(quality, Condition, science) <span class="sc">|&gt;</span> </span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">avg_rating =</span> <span class="fu">mean</span>(rating),</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">sem_rating =</span> <span class="fu">sd</span>(rating) <span class="sc">/</span> <span class="fu">sqrt</span>(<span class="fu">n</span>()))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>`summarise()` has grouped output by 'quality', 'Condition'. You can override
 using the `.groups` argument.</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>replication_grouped<span class="sc">$</span>science <span class="ot">&lt;-</span>   <span class="fu">factor</span>(replication_grouped<span class="sc">$</span>science, </span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>      <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"physics"</span>, <span class="st">"chemistry"</span>, <span class="st">"biology"</span>, <span class="st">"neuroscience"</span>, <span class="st">"psychology"</span>, <span class="st">"social"</span>))</span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>replication_grouped<span class="sc">$</span>quality <span class="ot">&lt;-</span></span>
-<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">factor</span>(replication_grouped<span class="sc">$</span>quality,</span>
-<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"good"</span>, <span class="st">"bad"</span>))</span>
-<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(replication_grouped, <span class="fu">aes</span>(<span class="at">x=</span>quality, <span class="at">y=</span>avg_rating, <span class="at">fill=</span>Condition)) <span class="sc">+</span></span>
-<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position=</span><span class="st">"dodge"</span>, <span class="at">stat=</span><span class="st">"identity"</span>) <span class="sc">+</span> </span>
-<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette=</span><span class="st">"Set1"</span>) <span class="sc">+</span></span>
-<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> (avg_rating <span class="sc">-</span> sem_rating), <span class="at">ymax =</span> (avg_rating <span class="sc">+</span> sem_rating)), <span class="at">position =</span> <span class="st">"dodge"</span>) <span class="sc">+</span></span>
-<span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>science, <span class="at">nrow=</span><span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb32-13"><a href="#cb32-13" aria-hidden="true" tabindex="-1"></a>  ggthemes<span class="sc">::</span><span class="fu">theme_few</span>() <span class="sc">+</span></span>
-<span id="cb32-14"><a href="#cb32-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">name=</span><span class="st">'explanation rating'</span>, <span class="at">limits=</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">3</span>, <span class="dv">3</span>), <span class="at">breaks=</span><span class="fu">seq</span>(<span class="sc">-</span><span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb32-15"><a href="#cb32-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">8</span>, <span class="at">margin =</span> <span class="fu">margin</span>()))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>replication_grouped<span class="sc">$</span>science <span class="ot">&lt;-</span>   <span class="fu">factor</span>(replication_grouped<span class="sc">$</span>science, </span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>      <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"physics"</span>, <span class="st">"chemistry"</span>, <span class="st">"biology"</span>, <span class="st">"neuroscience"</span>, <span class="st">"psychology"</span>, <span class="st">"social"</span>))</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>replication_grouped<span class="sc">$</span>quality <span class="ot">&lt;-</span></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">factor</span>(replication_grouped<span class="sc">$</span>quality,</span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"good"</span>, <span class="st">"bad"</span>))</span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(replication_grouped, <span class="fu">aes</span>(<span class="at">x=</span>quality, <span class="at">y=</span>avg_rating, <span class="at">fill=</span>Condition)) <span class="sc">+</span></span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position=</span><span class="st">"dodge"</span>, <span class="at">stat=</span><span class="st">"identity"</span>) <span class="sc">+</span> </span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette=</span><span class="st">"Set1"</span>) <span class="sc">+</span></span>
+<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> (avg_rating <span class="sc">-</span> sem_rating), <span class="at">ymax =</span> (avg_rating <span class="sc">+</span> sem_rating)), <span class="at">position =</span> <span class="st">"dodge"</span>) <span class="sc">+</span></span>
+<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>science, <span class="at">nrow=</span><span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a>  ggthemes<span class="sc">::</span><span class="fu">theme_few</span>() <span class="sc">+</span></span>
+<span id="cb31-14"><a href="#cb31-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">name=</span><span class="st">'explanation rating'</span>, <span class="at">limits=</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">3</span>, <span class="dv">3</span>), <span class="at">breaks=</span><span class="fu">seq</span>(<span class="sc">-</span><span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb31-15"><a href="#cb31-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">8</span>, <span class="at">margin =</span> <span class="fu">margin</span>()))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="Replication-Report-Template_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
 </div>
