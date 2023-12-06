@@ -72,7 +72,9 @@ No power analysis or sample size justification was provided in the original pape
 
 A post-hoc power analysis of the original study with two independent study groups (reductive and horizonal explanations) with the quality of explanations as the main continuous effect and alpha at 0.05 yielded a post-hoc power of 16.5%. The post-hoc power analysis was conducted with G*Power 3.1.
 
-As explanation level was a between-subject manipulation, the power calculation can be reframed as the number of items tested rather than the number of participants in the study. In this case, each participant rates 12 explanations, and thus the number of explanations rated in each condition is 1008. The main analysis of a two-tailed t-test of two independent means thus gives us a post-hoc power of 78.4%.
+As explanation level was a between-subject manipulation, the power calculation can be reframed as the number of items tested rather than the number of participants in the study. In this case, each participant rates 12 explanations, and thus the number of explanations rated in the reductive condition was 876, and the number of explanations rated in the horizontal condition was 888. The main analysis of a two-tailed t-test of two independent means thus gives us a post-hoc power of 72.9%.
+
+Although the t-test in the original study is conducted within a linear mixed-effects model, I conducted the power analysis above as a proxy due to the difficulty of estimating the influence of random effects on power.
 
 <!-- Check Hopkins 2019 and replication study for post-hoc power -->
 
@@ -82,7 +84,9 @@ As explanation level was a between-subject manipulation, the power calculation c
 
 Like the original and replication samples, English-speaking adult participants residing in the United States will be recruited online (via Prolific instead of MTurk). Participants who complete the task and pass both attention checks will be included in the final sample for analysis. Details about the attention checks can be found in the Procedure or Control sections below.
 
-We will be matching the original MTurk sample size due to the power analysis conducted above. However, we will need to be mindful of the number of exclusions due to failed attention checks, as there was a high number in both the original study (60 participants) and the replication study (70 participants).
+Due to the high number of exclusions in in both the original study (60 participants) and the replication study (70 participants), we will be building in a 20% buffer in our planned sample recruitment.
+
+With a planned sample of 200 workers on Prolific, and a 20% exclusion rate for failed attention checks, that would leave us approximately 160 participants. With 80 participants in each condition completing 12 items each, the number of explanations rated in each of the two conditions would be 960. This will give us a planned power of 76.4%. 
 
 <!-- 2.5 times original sample size gives you 80% chance to reject 33% powered study -->
 
@@ -197,10 +201,12 @@ library(tidyverse) #To clean data and plot graphs in ggplot
 library(lme4) #To run mixed-effects linear regression model in original study
 library(lmerTest)
 library(brms) #To run Bayesian supplementary analyses
+# library(simr)
 
 #### Import data
-raw_data <- read_survey("../data/pilotdata.csv")
+# raw_data <- read_survey("../data/pilotdata.csv")
 # raw_data <- read_survey("../data/pilotb.csv")
+raw_data <- read_survey("../data/fakedataformodelfit.csv")
 
 #### Data exclusion / filtering
 raw_data <- raw_data |> 
@@ -323,15 +329,27 @@ This replication project does not have different samples of participants. Theref
 
 ```{r echo=TRUE}
 
-my_explanations <- lmer(rating ~ quality + condition + (quality * condition) + (1 | ID) + (1 | science) + (quality | item), data = data)
+# my_explanations <- lmer(rating ~ quality + condition + (quality * condition) + (1 | ID) + (1 | science) + (quality | item), data = data)
 
 # summary(my_explanations)
 
-lmert <- lmerTest::lmer(rating ~ quality + condition + (quality * condition) + (1 | ID) + (1 | science) + (quality | item), data = data)
+lmert <- lmerTest::lmer(rating ~ condition + quality + science + condition:quality + condition:science + quality:science + (1 | ID) + (1 + quality | item), data = data)
 
 summary(lmert)
 
+# Perform power analysis for a specific contrast (e.g., 'quality' variable)
+# power_analysis <- powerSim(lmert, test=fcompare(y~quality), nsim=5000)
+
+# View power estimates
+# print(power_analysis)
 ```
+
+
+```{r}
+# pwr1 <- powerCurve(lmert, nsim=100, along = "ID", test = fcompare(y~quality))
+# plot(pwr1)
+```
+
 
 ### Exploratory analyses
 
@@ -341,7 +359,7 @@ I repeated the analyses using Bayesian modelling, and obtained similar results a
 
 ```{r echo=TRUE}
 
-my_bayes_explanations <- brm(rating ~ quality + condition + (quality * condition) + (1 | ID) + (1 | science) + (quality | item), data = data)
+my_bayes_explanations <- brm(rating ~ condition + quality + science + condition:quality + condition:science + quality:science + (1 | ID) + (1 + quality | item), data = data)
 
 # my_bayes_explanations <- brm(rating ~ quality + condition + (quality * condition) + (1 | ID) + (quality * condition | item), data = data)
 
