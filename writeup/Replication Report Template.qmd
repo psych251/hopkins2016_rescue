@@ -62,21 +62,17 @@ Participants (20 MTurk workers and 40 undergraduates out of the complete recruit
 
 ### Power Analysis
 
-<!-- Original effect size, power analysis for samples to achieve 80%, 90%, 95% power to detect that effect size.  Considerations of feasibility for selecting planned sample size.
+<!-- Original effect size, power analysis for samples to achieve 80%, 90%, 95% power to detect that effect size.  Considerations of feasibility for selecting planned sample size.-->
 
-How much power does your planned sample have for original effect? For an attenuated effect that is half the size of the original? 
-
-(If power analysis is not possible or precise, discuss more fully how you determined a sample size that would be sufficient for rescue.) -->
+The key statistical test for the original study and the subsequent replications is the main fixed effect of condition on rating of explanation quality within the linear mixed-effects model.
 
 No power analysis or sample size justification was provided in the original paper, and the replication sample utilised the same MTurk sample size (_n_=167) from the original experiment to preserve power across both experiments.
 
-A post-hoc power analysis of the original study with two independent study groups (reductive and horizonal explanations) with the quality of explanations as the main continuous effect and alpha at 0.05 yielded a post-hoc power of 16.5%. The post-hoc power analysis was conducted with G*Power 3.1.
+I conducted the power analysis as a t-test of difference between two independent means as a proxy due to the difficulty of estimating the influence of random effects on power.
 
-As explanation level was a between-subject manipulation, the power calculation can be reframed as the number of items tested rather than the number of participants in the study. In this case, each participant rates 12 explanations, and thus the number of explanations rated in the reductive condition was 876, and the number of explanations rated in the horizontal condition was 888. The main analysis of a two-tailed t-test of two independent means thus gives us a post-hoc power of 72.9%.
+As explanation level was a between-subject manipulation, the power calculation is conducted based on the number of items tested rather than the number of participants in the study. In this case, each participant rates 12 explanations, and thus the number of explanations rated in the reductive condition was 876, and the number of explanations rated in the horizontal condition was 888. The main analysis of a two-tailed t-test of two independent means thus gives us a post-hoc power of 72.9%. The post-hoc power analysis was conducted with G*Power 3.1.
 
-Although the t-test in the original study is conducted within a linear mixed-effects model, I conducted the power analysis above as a proxy due to the difficulty of estimating the influence of random effects on power.
-
-<!-- Check Hopkins 2019 and replication study for post-hoc power -->
+For the replication study, the post-hoc power was 36.4% after excluding responses for participants who had failed either attention check. The mean rating of horizontal explanations was 1.58 (_SD_=1.35, _n_=936) and the mean rating of reductive explanations was 1.48 (_SD_=1.39, _n_=1020).
 
 ### Planned Sample
 
@@ -87,6 +83,8 @@ Like the original and replication samples, English-speaking adult participants r
 Due to the high number of exclusions in in both the original study (60 participants) and the replication study (70 participants), we will be building in a 20% buffer in our planned sample recruitment.
 
 With a planned sample of 200 workers on Prolific, and a 20% exclusion rate for failed attention checks, that would leave us approximately 160 participants. With 80 participants in each condition completing 12 items each, the number of explanations rated in each of the two conditions would be 960. This will give us a planned power of 76.4%. 
+
+If all the data collected from the 200 participants can be used in the analysis (yielding 1200 items rated in each condition), this will give us a planned power of 85%.
 
 <!-- 2.5 times original sample size gives you 80% chance to reject 33% powered study -->
 
@@ -151,8 +149,6 @@ The following procedure for the key analysis of interest is quoted from the orig
 > Data from the explanations task were analyzed with a mixed-effects linear regression model (using the lme4 package in R) predicting the rating given on each trial from the sample (MTurk, undergraduates), the quality of the explanation (good, bad), the explanation level (horizontal, reductive), and the science from which the phenomenon was drawn (physics, chemistry, biology, neuroscience, psychology, and social science). Sample and explanation level were between-participants variables and quality and science were within-participants. All possible interactions between variables were tested.
 
 Similar to the replication but not the original study, the between-participants variable "sample" will not be available for analysis as there will not be an undergraduate population recruited.
-
-The key analysis of interest is a t-test within the lmerTest R package for the difference between means of ratings for reductive explanations and horizontal explanations. This will yield a t-test statistic with the corresponding p-value.
 
 ### Differences from Original Study and 1st replication
 
