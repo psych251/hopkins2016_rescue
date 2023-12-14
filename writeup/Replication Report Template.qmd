@@ -12,15 +12,16 @@ format:
 
 ## Introduction
 
-<!-- [No abstract is needed.]  Each replication project will have a straightforward, no frills report of the study and results.  These reports will be publicly available as supplementary material for the aggregate report(s) of the project as a whole.  Also, to maximize project integrity, the intro and methods will be written and critiqued in advance of data collection.  Introductions can be just 1-2 paragraphs clarifying the main idea of the original study, the target finding for replication, and any other essential information.  It will NOT have a literature review -- that is in the original publication. You can write both the introduction and the methods in past tense. -->  
+<!-- A *brief* intro situating the project -- what field is it, what question is the original paper asking, what’s the gist of the experiment -->
 
-### Research Interests
-I am currently a first-year PhD Student in the Graduate School of Education in the Developmental and Psychological Sciences program, and I am interested in using transdiagnostic longitudinal neuroimaging methods to understand the developmental trajectories of individuals within and across functional areas, so as to better understand how neural development relates to educational and other well-being outcomes.
+The reductive allure has been most frequently studied in the context of neuroscientific explanations for phenomenon that may not necessarily require them, and has been thought to cause people to perceive these explanations as being higher in quality, even if the neuroscientific jargon offers no additional information.
 
-This paper, and the seductive allure effect in general, is relevant to my interest in communicating scientific findings precisely and concisely. I might also be susceptible to this very effect in my own desire for explanations as I pivot from working as a school psychologist to neuroscience research as a PhD student.
+Beyond evaluating scientific literature and findings, this effect has garnered some attention in scientific communication as its effect is thought to extend even to decisions on medical treatment, juries in legal proceedings, and misappropriated to advance social or political agenda.
+
+This study attempts to examine if the reductive effect generalizes beyond that of neuroscience. Specifically, it investigates whether participants would prefer reductive explanations across 6 scientific domains, and whether this would differ by the science of the phenomenon presented.
 
 ### Description of stimuli and procedures
-The original study aimed to investigate whether participants would prefer reductive explanations and whether this would differ by the science of the phenomenon. Horizontal explanations were defined as referring "only to the science from which the phenomenon itself was drawn (e.g., using biological language to explain a biological phenomenon)", while reductive explanations were defined as explanations which "included information from the next lower level in the hierarchy (e.g., using chemical language to explain a biological phenomenon)".
+Horizontal explanations were defined as referring "only to the science from which the phenomenon itself was drawn (e.g., using biological language to explain a biological phenomenon)", while reductive explanations were defined as explanations which "included information from the next lower level in the hierarchy (e.g., using chemical language to explain a biological phenomenon)".
 
 Participants were presented with horizontal and reductive explanations of phenomenon in 6 sciences: physics, chemistry, biology, neuroscience, psychology, and social sciences. The stimuli were carefully constructed so that the reductive information would not provide any explanatory power, allowing the authors to separate out a potential preference for explanations with a reductive form even in the absence of any helpful reductive content.
 
@@ -30,11 +31,15 @@ The original authors observed that there was a main effect of explanation level,
 Participants may approach this task, and the explanations provided, with vastly different background knowledge, as was observed in the original study. As the replication sample will be crowd-sourced online via Prolific, participants may be motivated to complete the task as fast as possible rather than attempt to maximise their performance on the task, even with the instructional check at the start of the experiment and the attentional check in the middle of the Rating Explanations task.
 
 ### Link to GitHub repository and original paper
-The repository for this rescue project is located at [https://github.com/psych251/hopkins2016_rescue](https://github.com/psych251/hopkins2016_rescue), and the original paper 
+The repository for this rescue project is located at [https://github.com/psych251/hopkins2016_rescue](https://github.com/psych251/hopkins2016_rescue), and the pre-registration can be found [here](https://osf.io/79w3a/).
+
+The original paper 
 
 > Hopkins, E. J., Weisberg, D. S., & Taylor, J. C. V. (2016). The seductive allure is a reductive allure: People prefer scientific explanations that contain logically irrelevant reductive information. Cognition, 155, 67–76. https://doi.org/10.1016/j.cognition.2016.06.011
 
 is hosted [here](https://github.com/psych251/hopkins2016_rescue/blob/main/original_paper/original_paper.pdf).
+
+
 
 ## Summary of prior replication attempt
 
@@ -54,7 +59,7 @@ The repository for the previous replication is hosted [here](https://github.com/
 
 ### Original Findings
 
-The regression in the original study revealed a significant main effect of explanation level (as reported in Figure 2 of original paper): reductive explanations (_n_=131, _M_=1.26, _SD_=1.71) were rated signficantly higher on average than horizonal explanations (_n_=128, _M_=1.04, _SD_=1.88). Effect sizes (Cohen's _d_ for within-subjects tests) were only reported for pairwise differences between adjacent fields in the hierarchy of sciences (Figure 4 of original paper). 
+The linear mixed-effects regression in the original study revealed a significant main effect of explanation level (as reported in Figure 2 of original paper): reductive explanations (_n_=131, _M_=1.26, _SD_=1.71) were rated signficantly higher on average than horizonal explanations (_n_=128, _M_=1.04, _SD_=1.88). Effect sizes (Cohen's _d_ for within-subjects tests) were only reported for pairwise differences between adjacent fields in the hierarchy of sciences (Figure 4 of original paper). 
 
 Participants (20 MTurk workers and 40 undergraduates out of the complete recruited sample of 167 MTurk workers and 152 undergraduates) who failed attention checks were excluded from the sample (i.e. 60 out of the total recruited sample of 319 participants).
 
@@ -64,15 +69,15 @@ Participants (20 MTurk workers and 40 undergraduates out of the complete recruit
 
 <!-- Original effect size, power analysis for samples to achieve 80%, 90%, 95% power to detect that effect size.  Considerations of feasibility for selecting planned sample size.-->
 
-The key statistical test for the original study and the subsequent replications is the main fixed effect of condition on rating of explanation quality within the linear mixed-effects model.
+**The key statistical test for the original study and the subsequent replications is the main fixed effect of condition on rating of explanation quality within the linear mixed-effects model.**
 
-No power analysis or sample size justification was provided in the original paper, and the replication sample utilised the same MTurk sample size (_n_=167) from the original experiment to preserve power across both experiments.
+No power analysis or sample size justification was provided in the original paper, and the replication sample utilised the same MTurk sample size (_n_ = 167) from the original experiment to preserve power across both experiments.
 
-I conducted the power analysis as a t-test of difference between two independent means as a proxy due to the difficulty of estimating the influence of random effects on power.
+A power analysis as a t-test of difference between two independent means was conducted as a proxy due to the difficulty of estimating the influence of random effects on power.
 
 As explanation level was a between-subject manipulation, the power calculation is conducted based on the number of items tested rather than the number of participants in the study. In this case, each participant rates 12 explanations, and thus the number of explanations rated in the reductive condition was 876, and the number of explanations rated in the horizontal condition was 888. The main analysis of a two-tailed t-test of two independent means thus gives us a post-hoc power of 72.9%. The post-hoc power analysis was conducted with G*Power 3.1.
 
-For the replication study, the post-hoc power was 36.4% after excluding responses for participants who had failed either attention check. The mean rating of horizontal explanations was 1.58 (_SD_=1.35, _n_=936) and the mean rating of reductive explanations was 1.48 (_SD_=1.39, _n_=1020).
+For the replication study, the post-hoc power was 36.4% after excluding responses for participants who had failed either attention check. The mean rating of horizontal explanations was 1.61 (_SD_ = 1.50, _ntrials_ = 456) and the mean rating of reductive explanations was 1.42 (_SD_ = 1.47, _ntrials_ = 660).
 
 ### Planned Sample
 
@@ -85,8 +90,6 @@ Due to the high number of exclusions in in both the original study (60 participa
 With a planned sample of 200 workers on Prolific, and a 20% exclusion rate for failed attention checks, that would leave us approximately 160 participants. With 80 participants in each condition completing 12 items each, the number of explanations rated in each of the two conditions would be 960. This will give us a planned power of 76.4%. 
 
 If all the data collected from the 200 participants can be used in the analysis (yielding 1200 items rated in each condition), this will give us a planned power of 85%.
-
-<!-- 2.5 times original sample size gives you 80% chance to reject 33% powered study -->
 
 ### Materials
 
@@ -124,7 +127,7 @@ The following procedure is quoted from the original article:
 
 Since undergraduates will not be recruited for this sample, the demographic questions will only include gender, age, highest degree completed, category that closely matched the field of their highest degree (physical sciences, social sciences, engineering, humanities, health, and business), and college- or graduate-level coursework.
 
-In addition, this rescue project not be asking about coursework in anthropology and philosophy as these subjects are tangential to the main research questions. Instead, the list of courses will have a combined social sciences item for anthropology/economics/philopsphy so that there will be 6 scientific disciplines in the list which are aligned to the rating explanations. (The original paper also averaged sociology, economics, and political science into a single post-hoc measure when analysing participants' perceptions of science as they found that the three domains were highly correlated.) This rescue study preserves the coursework question as the original study observed that "the total number of sciences (out of 6) in which a participant had taken courses was a significant predictor of overall difference scores in a linear regression: _F_ (1, 214) = 6.27, _p_ < 0.05, _R^2^_ = 0.02."
+In addition, this replication project not be asking about coursework in anthropology and philosophy as these subjects are tangential to the main research questions. Instead, the list of courses will have a combined social sciences item for anthropology/economics/philopsphy so that there will be 6 scientific disciplines in the list which are aligned to the rating explanations. (The original paper also averaged sociology, economics, and political science into a single post-hoc measure when analysing participants' perceptions of science as they found that the three domains were highly correlated.) This rescue study preserves the coursework question as the original study observed that "the total number of sciences (out of 6) in which a participant had taken courses was a significant predictor of overall difference scores in a linear regression: _F_ (1, 214) = 6.27, _p_ < 0.05, _R^2^_ = 0.02."
 
 ### Controls
 
@@ -136,7 +139,13 @@ The first attention check simply requires participants to select 0 on the slidin
 
 In addition, the description of each scientific phenomena was "displayed for 10 s before participants could advance to the next screen" to ensure that they had sufficient time to read before they could view the explanations provided. This delay should also ensure greater deliberation as participants could not rush through the questions as quickly.
 
-The exact stimuli used for attention checks were not provided in the original paper, so the attention checks in the replication were used.
+The exact stimuli used for attention checks were not provided in the original paper, so the attention checks in the replication were used. The intermediate attention check is reproduced here for future reference:
+
+> People are generally better at reasoning about typical members of a category than unusual members of that category. For example, if a person is told a fact about a type of bird (“All sparrows have livers”) and asked whether that fact is true of all birds, they are more likely to answer correctly if the fact is given about a stereotypical member of the bird category (e.g., sparrows, robins) than if an atypical bird is used (e.g., peacocks, penguins).
+
+> **Why are people better at reasoning about stereotypical animals?**
+
+> Research shows that survey participants sometimes fail to pay full attention to the contents of survey items. In order to ensure that tasks are being performed correctly, researchers include questions that require participants to select a particular answer. Instead of rating the quality of this explanation, please select three on the scale below before continuing to the next question.
 
 ### Analysis Plan
 
@@ -146,7 +155,7 @@ The exact stimuli used for attention checks were not provided in the original pa
 
 The following procedure for the key analysis of interest is quoted from the original article:
 
-> Data from the explanations task were analyzed with a mixed-effects linear regression model (using the lme4 package in R) predicting the rating given on each trial from the sample (MTurk, undergraduates), the quality of the explanation (good, bad), the explanation level (horizontal, reductive), and the science from which the phenomenon was drawn (physics, chemistry, biology, neuroscience, psychology, and social science). Sample and explanation level were between-participants variables and quality and science were within-participants. All possible interactions between variables were tested.
+> Data from the explanations task were analyzed with a mixed-effects linear regression model (using the lme4 package in R) predicting the rating given on each trial from the sample (MTurk, undergraduates), the quality of the explanation (good, bad), the explanation level (horizontal, reductive), and the science from which the phenomenon was drawn (physics, chemistry, biology, neuroscience, psychology, and social science). Sample and explanation level were between-participants variables and quality and science were within-participants. All possible interactions between variables were tested. [...] the best-fitting model included random intercepts by participant and item as well as a random effect of item on the slope for the quality variable.
 
 Similar to the replication but not the original study, the between-participants variable "sample" will not be available for analysis as there will not be an undergraduate population recruited.
 
@@ -158,18 +167,26 @@ Unlike the original study and replication, the sample will be recruited online v
 
 Given that the experimental materials and procedure involved in testing the primary research questions remain identical, and the analysis plan is identical save for one between-participants variable which did not make a difference in the analysis in the original study, these adjustments to the original study are not expected to make a difference based on claims in the original article.
 
-<!--
+The sample has been increased from the previous replication to increase the power, and the instruction for participants to select a specific value on the slider in the attention check was bolded to increase the likelihood that they would see it and thus comply.
+
 ### Methods Addendum (Post Data Collection)
 
-You can comment this section out prior to final report with data collection.
--->
 
 #### Actual Sample
 <!-- Sample size, demographics, data exclusions based on rules spelled out in analysis plan. -->
 
+39 participants were excluded for failing both attention checks, within the planned buffer for exclusions. This left a total of 161 participants across both conditions, with 81 participants were randomly assigned to the horizontal condition, and 80 participants were randomly assigned to the reductive condition.
+
+Within this replication sample, there was no significant difference between conditions for the proportion of males (chi-squared test: _X-squared_ = 1.863, _df_ = 2, _p_ = 0.394) and for the mean age (two-tailed t-test: _t_ = -1.234, _df_ = 1858.1, _p_ = 0.218).
+
+Comparing between this replication sample and the original sample, the mean age for this sample was 36.7 as compared to 39.8 in the MTurk sample, 47.2% reported having an associate's or bachelor's degree as compared to 46.3% in the MTurk sample, and 14.9% reported having a master's degree or higher as compared to 15.0% in the MTurk sample.
+
+Thus, demographic variables are unlikely to have affected the subsequent analyses.
+
 #### Differences from pre-data collection methods plan
 <!-- Any differences from what was described as the original plan, or “none”. -->
 
+None.
 
 ## Results
 
@@ -197,16 +214,15 @@ library(tidyverse) #To clean data and plot graphs in ggplot
 library(lme4) #To run mixed-effects linear regression model in original study
 library(lmerTest)
 library(brms) #To run Bayesian supplementary analyses
-# library(simr)
+library(broom.mixed)
+library(kableExtra)
+library(metafor)
 
 #### Import data
 # raw_data <- read_survey("../data/pilotdata.csv")
 # raw_data <- read_survey("../data/pilotb.csv")
-raw_data <- read_survey("../data/fakedataformodelfit.csv")
-
-#### Data exclusion / filtering
-raw_data <- raw_data |> 
-  select(-c('Feedback')) #delete columns not used in analysis
+# raw_data <- read_survey("../data/fakedataformodelfit.csv")
+raw_data <- read_survey("../data/replicationfull.csv")
 
 data_num <- raw_data |> 
   mutate(ID = 1:nrow(raw_data)) #add participant ID column
@@ -249,12 +265,12 @@ data_long$science <- ifelse(data_long$science=="S", "social", data_long$science)
 data_long$rating <- as.integer(as.character(data_long$rating))
 
 #exclude participants who failed attention check 1
-# data_excluded_both <- data_long |> 
-#  filter(Slider1_1==0)
+data_excluded_both <- data_long |> 
+  filter(Slider1_1==0)
 
 #exclude participants who failed attention check 2
-# data_excluded_both <- data_excluded_both |> 
-#  filter(Att_1==3)
+data_excluded_both <- data_excluded_both |> 
+  filter(Att_1==3)
 ```
 
 ### Results of control measures
@@ -268,20 +284,45 @@ unfiltered_rows = data_long %>%
 unfiltered_total = (unfiltered_rows / 12)
 
 #total number of participants who passed attention checks
-# filtered_rows = data_excluded_both %>%
-#  nrow()
+filtered_rows = data_excluded_both %>%
+  nrow()
 
-# filtered_total = (filtered_rows / 12)
-#number of excluded participants
-# num_excluded = unfiltered_total - filtered_total
+filtered_total = (filtered_rows / 12)
+# number of excluded participants
+ num_excluded = unfiltered_total - filtered_total
 
-# num_excluded
+ num_excluded
 
 #final number of included participants
-# filtered_total
-```
+ filtered_total
+ 
+summary_stats <- data_excluded_both  %>%
+  group_by(Condition) %>% 
+  summarise(
+    participant_count = n(),
+    proportion_male = sum(Gender == "Male")/n(),
+    mean_age = mean(Age[!is.na(Age) & Age != 0]),
+    mean_rating = mean(rating), 
+    sd_rating = sd(rating)      
+  )
 
-There was a high number of participants who failed the first attention check. I will need to relook at the formatting to emphasize that they should select 0.
+summary_stats
+
+# Create a contingency table
+contingency_table <- table(data_excluded_both$Condition, data_excluded_both$Gender)
+
+# Perform chi-squared test
+chi_squared_result <- chisq.test(contingency_table)
+chi_squared_result
+
+# Assuming data_excluded_both is your dataset
+group1_age <- subset(data_excluded_both, Condition == "H")$Age
+group2_age <- subset(data_excluded_both, Condition == "R")$Age
+
+# Perform independent t-test
+t_test_result <- t.test(group1_age, group2_age)
+t_test_result
+```
 
 ### Confirmatory analysis
 
@@ -292,8 +333,8 @@ There was a high number of participants who failed the first attention check. I 
 ```{r echo=TRUE}
 
 #Read in and format data
-# data <- data_excluded_both
-data <- data_long
+data <- data_excluded_both
+# data <- data_long
 
 # Convert to factor
 data$science <- as.factor(data$science)
@@ -325,42 +366,70 @@ This replication project does not have different samples of participants. Theref
 
 ```{r echo=TRUE}
 
-# my_explanations <- lmer(rating ~ quality + condition + (quality * condition) + (1 | ID) + (1 | science) + (quality | item), data = data)
-
-# summary(my_explanations)
-
 lmert <- lmerTest::lmer(rating ~ condition + quality + science + condition:quality + condition:science + quality:science + (1 | ID) + (1 + quality | item), data = data)
 
-summary(lmert)
+tidy_lmert <- tidy(lmert)
 
-# Perform power analysis for a specific contrast (e.g., 'quality' variable)
-# power_analysis <- powerSim(lmert, test=fcompare(y~quality), nsim=5000)
+# Filter rows where p.value is less than 0.05
+filtered_lmert <- tidy_lmert |>  
+  filter(p.value < 0.05)
 
-# View power estimates
-# print(power_analysis)
+# Display filtered results using kable
+kable(filtered_lmert, digits = 3, caption = "Statistically significant terms in lmer at p<0.05")
 ```
-
-
-```{r}
-# pwr1 <- powerCurve(lmert, nsim=100, along = "ID", test = fcompare(y~quality))
-# plot(pwr1)
-```
-
-
 ### Exploratory analyses
 
 <!-- Any follow-up analyses desired (not required). -->
 
-I repeated the analyses using Bayesian modelling, and obtained similar results as the lmer.
+The analyses were repeated using Bayesian modelling, and the results obtained were similar to the lmer. Again, the findings that the fixed effect of explanation quality, interaction effect between explanation level and explanation quality, and explanation level and biology are robust in this sample.
 
 ```{r echo=TRUE}
 
 my_bayes_explanations <- brm(rating ~ condition + quality + science + condition:quality + condition:science + quality:science + (1 | ID) + (1 + quality | item), data = data)
 
-# my_bayes_explanations <- brm(rating ~ quality + condition + (quality * condition) + (1 | ID) + (quality * condition | item), data = data)
+tidy_brm <- tidy(my_bayes_explanations)
 
-print(my_bayes_explanations)
+# Filter rows where p.value is less than 0.05
+filtered_brm <- tidy_brm |>  
+  filter(conf.low > 0 | conf.high < 0)
+
+# Display filtered results using kable
+kable(filtered_brm, digits = 3, caption = "Statistically significant terms in brm at p<0.05")
 ```
+When exploring other instantiations of the lmer, we also tried to test science as a random effect rather than a fixed effect. Again, there was a significant effect of explanation quality, an interaction effect between explanation quality and explanation level, but no significant effect of explanation level alone. The other interaction effect of condition and biology, and the fixed effect of psychology was also no longer statistically significant.
+
+```{r echo=TRUE}
+lmert2 <- lmerTest::lmer(rating ~ condition + quality + condition:quality + (1 | science) + (1 | ID) + (1 + quality | item), data = data)
+
+tidy_lmert2 <- tidy(lmert2)
+
+# Filter rows where p.value is less than 0.05
+filtered_lmert2 <- tidy_lmert2 |>  
+  filter(p.value < 0.05)
+
+# Display filtered results using kable
+kable(filtered_lmert2, digits = 3, caption = "Statistically significant terms in lmer at p<0.05 where science is random effect")
+```
+
+```{r echo=TRUE}
+
+brm2 <- brm(rating ~ condition + quality + condition:quality + (1 | science) + (1 | ID) + (1 + quality | item), data = data)
+
+tidy_brm2 <- tidy(brm2)
+
+# Filter rows where p.value is less than 0.05
+filtered_brm2 <- tidy_brm2 |>  
+  filter(conf.low > 0 | conf.high < 0)
+
+# Display filtered results using kable
+kable(filtered_brm2, digits = 3, caption = "Statistically significant terms in brm at p<0.05 where science is random effect")
+```
+
+When the same model with science as a random effect was run with Bayesian modelling, the fixed effects of explanation quality, and interaction between explanation level and quality was statistically significant. 
+
+In both Bayesian models, regardless of whether science was modelled as a fixed or random effect, there was a significant random effect of participant, item, and effect of item on the slope for the quality variable.
+
+
 ```{r echo=TRUE}
 
 #read original data
@@ -406,7 +475,7 @@ This graph illustrates the results of the first replication. Code is not reprodu
 ```{r echo=TRUE}
 
 #rescue graph
-data <- data_long
+data <- data_excluded_both
 replication_grouped <- data |> 
   group_by(quality, Condition, science) |> 
   summarise(avg_rating = mean(rating),
@@ -436,24 +505,117 @@ ggplot(replication_grouped, aes(x=quality, y=avg_rating, fill=Condition)) +
 ## Mini meta analysis
 <!-- Combining across the original paper, 1st replication, and 2nd replication, what is the aggregate effect size? -->
 
+This meta analysis will focus on the seductive allure of reductive explanations, in which some studies specifically compare psychology and neuroscience explanations, and others (such as Hopkins et al., 2016) compare reductive explanations across multiple domains.
+
+For a more comprehensive treatment of the existing literature, please refer to Bennett and McLaughlin (2023) [here](https://doi.org/10.1177/09636625231205005). However, this mini meta analysis includes studies that sampled experts, which was an exclusion criteria in Bennet and McLaughlin (e.g. Study 3 in Weisberg et al. (2008) and Hopkins et al. (2019)), and also includes the replication studies from this class (Chuey (2019) and Chiu (2023)).
+
+In both meta analyses, 
+
+> We found a mild but highly significant effect, with substantial heterogeneity.
+
+It is worth noting that none of the studies in this mini meta analysis had a significant effect size on their own. In addition, Study 2 in Rhodes et al. (2014) used a 100-point scale for participants to rate the quality of the articles, which inflated the standard deviation.
+
+```{r echo=TRUE}
+
+meta <- read_csv("../data/metaanalysis.csv")
+
+meta <- meta[order(meta$d), ]
+
+metamodel <- rma(yi = d, vi = var_d, ni = n_total, data = meta, method = "REML", knha = TRUE)
+
+summary(metamodel)
+
+forest(metamodel,
+       ilab = meta$name,
+       cex = 0.7)
+
+```
+
+
+```{r}
+
+funnel(metamodel)
+
+```
+Visual inspection of the funnel plot shows that all of the selected studies fall within expected variability in effect size estimates due to chance alone, and the choice of the studies reported is unlikely to be significantly affected by publication bias or study heterogeneity.
+
 ### Summary of Replication Attempt
 
-<!-- Open the discussion section with a paragraph summarizing the primary result from the confirmatory analysis and the assessment of whether it replicated, partially replicated, or failed to replicate the original result. --> 
+<!-- Open the discussion section with a paragraph summarizing the primary result from the confirmatory analysis and the assessment of whether it replicated, partially replicated, or failed to replicate the original result. -->
 
-This replication with the pilot sample (without exclusions for failing attention checks) actually finds a main effect of explanation quality, as well as an interaction effect between explanation level and explanation quality. However, there is no main effect of explanation level.
+#### Methodological Similarity
+
+**According to the scale in Figure 1 of LeBel et al. (2017), this replication is a Very Close Replication of the original study.** The following are my ratings of the various design facets of this replication study:
+
+```{r, results='asis', echo=TRUE}
+
+design_facets <- data.frame(
+  Facets = c('Effect, Hypothesis',
+             'IV Construct',
+             'DV Construct',
+             'IV Operationalization',
+             'DV Operationalization',
+             'Population',
+             'IV Stimuli',
+             'DV Stimuli',
+             'Procedural Details',
+             'Physical Setting',
+             'Contextual Variables'),
+  Rating = c('Same', 'Same', 'Same', 'Same', 'Same', 'Same', 'Same', 'Same', 'Different', 'Different', 'Different')
+)
+
+# Display the data frame as a table using kable
+kable(design_facets, caption = "Replication Taxonomy for various Design Facets", align = "c")
+```
+
+#### Replication of Results
+
+We did not manage to replicate the fixed effect of explanation level in the key test. In other words, we did not observe the seductive allure effect.
+
+We replicated secondary findings including the fixed effect of explanation quality (0.25), as well as the interaction effect between quality of explanation and explanation level (0.25). 
+
+This has been consistent for all of our confirmatory and exploratory analyses. **I would rate the replicability of results as partial replication (0.5)**.
 
 ### Commentary
 
 <!-- Add open-ended commentary (if any) reflecting (a) insights from follow-up exploratory analysis, (b) assessment of the meaning of the replication (or not) - e.g., for a failure to replicate, are the differences between original and present study ones that definitely, plausibly, or are unlikely to have been moderators of the result, and (c) discussion of any objections or challenges raised by the current and original authors about the replication attempt.  None of these need to be long. -->
 
-Although the 7-point Likert scale seems rudimentary, the same authors continued to use this measure for rating explanation quality, even in subsequent papers (Hopkins, Weisberg, & Taylor, 2019). A related study investigating the seductive allure of technical language (Silas et al., 2021) on explanations about how vaccination, immunisation and herd immunity work also utilised the same 7-point Likert scale.
+With regards to the methodology, although the 7-point Likert scale seems rudimentary, the same authors continued to use this measure for rating explanation quality, even in subsequent papers (Hopkins, Weisberg, & Taylor, 2019, 2023). 
 
-<!-- Maybe talk about Lund University replication? -->
+There have also been documented effects about using radio buttons versus a slider scale, as well as presenting the options vertically rather than horizontally, but the exact magnitude of difference would require further examination.
+
+Another modification to increase the odds of observing the reductive allure might be to make explanation level a within-subject variable, as suggested in Bennett and McLaughlin (2023).
+
+With regards to the substantive content of the research, Bennett and McLaughlin provide a succinct summary 
+
+>  However, with the exception of domain-specific expertise, no consistent individual difference has yet been found that predicts a predisposition toward the SANE effect. The types of materials and outcomes in each study are much more relevant to the strength of the effect.
+
+The working hypothesis is that deep domain-specific expertise (see Experiment 3 of Hopkins et al. 2016, and Hopkins et al. 2019) may help to reduce the seductive allure such that jargon is only useful if it is relevant and appropriate to the phenomenon being discussed.
+
+Many studies, including the ones included in this meta analysis have established a robust effect of explanation quality (e.g. Weisberg et al., 2008, Hopkins et al., 2016, 2023), and the interaction between explanation quality and explanation level.
+
+Perhaps the seductive allure of reductive explanations is more precisely defined in its interaction with explanation quality, that participants exposed to this effect are still able to tell good from bad explanations, but bad explanations are possibly used as the heuristic in the absence of explanatory information or lack of comprehension, and perceived as less bad or of a higher quality if they contain reductive language.
+
+### Investigator Independence
+
+I have no actual, potential or perceived conflict of interest in relation to this replication study. There was no communication with the authors of the original study.
 
 ### References
 
+Bennett, E. M., & McLaughlin, P. J. (2023). Neuroscience explanations really do satisfy: A systematic review and meta-analysis of the seductive allure of neuroscience. Public Understanding of Science, 09636625231205005. https://doi.org/10.1177/09636625231205005
+
+Hopkins, E. J., Weisberg, D. S., & Taylor, J. C. V. (2016). The seductive allure is a reductive allure: People prefer scientific explanations that contain logically irrelevant reductive information. Cognition, 155, 67–76. https://doi.org/10.1016/j.cognition.2016.06.011
+
 Hopkins, E. J., Weisberg, D. S., & Taylor, J. C. V. (2019). Does expertise moderate the seductive allure of reductive explanations? Acta Psychologica, 198, 102890. https://doi.org/10.1016/j.actpsy.2019.102890
 
-Silas, J., Jones, A., Weiss-Cohen, L., & Ayton, P. (2021). The seductive allure of technical language and its effect on covid-19 vaccine beliefs and intentions. Vaccine, 39(52), 7590–7597. https://doi.org/10.1016/j.vaccine.2021.11.027
+LeBel, E. P., McCarthy, R. J., Earp, B. D., Elson, M., & Vanpaemel, W. (2018). A Unified Framework to Quantify the Credibility of Scientific Findings. Advances in Methods and Practices in Psychological Science, 1(3), 389–402. https://doi.org/10.1177/2515245918787489
+
+Rhodes, R. E., Rodriguez, F., & Shah, P. (2014). Explaining the alluring influence of neuroscience information on scientific reasoning. Journal of Experimental Psychology: Learning, Memory, and Cognition, 40(5), 1432–1440. https://doi.org/10.1037/a0036844
+
+Weisberg, D. S., Keil, F. C., Goodstein, J., Rawson, E., & Gray, J. R. (2008). The Seductive Allure of Neuroscience Explanations. Journal of Cognitive Neuroscience, 20(3), 470–477. https://doi.org/10.1162/jocn.2008.20040
+
+Weisberg, D. S., Taylor, J. C. V., & Hopkins, E. J. (2015). Deconstructing the seductive allure of neuroscience explanations. Judgment and Decision Making, 10(5), 429–441. https://doi.org/10.1017/S193029750000557X
+
+https://rpubs.com/AaronChuey/hopkins2016writeupFinal 
 
 https://lup.lub.lu.se/student-papers/record/8933160/file/8933162.pdf

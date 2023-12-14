@@ -1,0 +1,13 @@
+﻿name,pub_date,target,n_total,d,var_d,DOI
+Weisberg 2008 1,2008,psych vs neuro,81,0.568,0.827,https://doi.org/10.1162/jocn.2008.20040
+Weisberg 2008 2,2008,psych vs neuro,22,1.189,0.774,https://doi.org/10.1162/jocn.2008.20040
+Weisberg 2008 3,2008,psych vs neuro,48,-0.12,1.788,https://doi.org/10.1162/jocn.2008.20040
+Rhodes 2014 1 ,2014,neuro (article quality),196,0.379085,0.870517,https://doi.org/10.1037/a0036844
+Rhodes 2014 2,2014,neuro (article quality),389,0.185053,17.076197,https://doi.org/10.1037/a0036844
+Hopkins 2015 1,2015,psych vs neuro,381,0.129565,1.775176,https://doi.org/10.1017/S193029750000557X
+Hopkins 2015 3,2015,psych vs neuro,260,0.170967,1.87171,https://doi.org/10.1017/S193029750000557X
+Hopkins 2016,2016,multiple domains,259,0.122425,1.797011,https://doi.org/10.1016/j.cognition.2016.06.011
+Larsson 2017,2017,multiple domains,218,0.538,0.714,https://lup.lub.lu.se/student-papers/record/8933160/file/8933162.pdf
+Hopkins 2019,2019,multiple domains,580,0.122425,1.797011,https://doi.org/10.1016/j.actpsy.2019.102890
+Chuey 2019,2019,multiple domains,93,0.129268,1.485181,https://rpubs.com/AaronChuey/hopkins2016writeupFinal
+Chiu 2023,2023,multiple domains,161,0.105328,1.682586,https://github.com/psych251/hopkins2016_rescue
