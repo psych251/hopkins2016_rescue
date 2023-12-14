@@ -7,3 +7,5 @@ I am currently a first-year PhD Student in the Graduate School of Education in t
 This paper, and the seductive allure effect in general, is relevant to my interest in communicating scientific findings precisely and concisely. I might also be susceptible to this very effect in my own desire for explanations as I pivot from working as a school psychologist to neuroscience research as a PhD student.
 
 If you have any questions or concerns about this course project, feel free to contact me or the instructor, Prof. Mike Frank.
+
+XKCD might have tangentially touched on this topic here at https://xkcd.com/435; thanks to Veronica Boyce for pointing this out to me.
