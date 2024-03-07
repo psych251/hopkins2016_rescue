@@ -163,7 +163,7 @@ Similar to the replication but not the original study, the between-participants 
 
 <!-- Explicitly describe known differences in sample, setting, procedure, and analysis plan from original study.  The goal, of course, is to minimize those differences, but differences will inevitably occur.  Also, note whether such differences are anticipated to make a difference based on claims in the original article or subsequent published research on the conditions for obtaining the effect. -->
 
-Unlike the original study and replication, the sample will be recruited online via Prolific rather than Amazon Mechanical Turk (MTurk). The other differences have been detailed in the sections above.
+Unlike the original study and replication, the sample will be recruited online via Prolific rather than Amazon Mechanical Turk (MTurk). The other differences have been detailed in the sections above (including not having an undergraduate sample, shortened Demographic Information section, and the removal of the Science Literacy, Reflective Thinking, Logical Syllogisms, and Perceptions of Science sections that were deemed tangential to the main research question).
 
 Given that the experimental materials and procedure involved in testing the primary research questions remain identical, and the analysis plan is identical save for one between-participants variable which did not make a difference in the analysis in the original study, these adjustments to the original study are not expected to make a difference based on claims in the original article.
 
@@ -368,14 +368,15 @@ This replication project does not have different samples of participants. Theref
 
 lmert <- lmerTest::lmer(rating ~ condition + quality + science + condition:quality + condition:science + quality:science + (1 | ID) + (1 + quality | item), data = data)
 
-tidy_lmert <- tidy(lmert)
+summary(lmert)
+# tidy_lmert <- tidy(lmert)
 
 # Filter rows where p.value is less than 0.05
-filtered_lmert <- tidy_lmert |>  
-  filter(p.value < 0.05)
+# filtered_lmert <- tidy_lmert |>  
+#  filter(p.value < 0.05)
 
 # Display filtered results using kable
-kable(filtered_lmert, digits = 3, caption = "Statistically significant terms in lmer at p<0.05")
+# kable(filtered_lmert, digits = 3, caption = "Statistically significant terms in lmer at p<0.05")
 ```
 ### Exploratory analyses
 
@@ -387,42 +388,45 @@ The analyses were repeated using Bayesian modelling, and the results obtained we
 
 my_bayes_explanations <- brm(rating ~ condition + quality + science + condition:quality + condition:science + quality:science + (1 | ID) + (1 + quality | item), data = data)
 
-tidy_brm <- tidy(my_bayes_explanations)
+summary(my_bayes_explanations)
+# tidy_brm <- tidy(my_bayes_explanations)
 
 # Filter rows where p.value is less than 0.05
-filtered_brm <- tidy_brm |>  
-  filter(conf.low > 0 | conf.high < 0)
+# filtered_brm <- tidy_brm |>  
+#  filter(conf.low > 0 | conf.high < 0)
 
 # Display filtered results using kable
-kable(filtered_brm, digits = 3, caption = "Statistically significant terms in brm at p<0.05")
+# kable(filtered_brm, digits = 3, caption = "Statistically significant terms in brm at p<0.05")
 ```
 When exploring other instantiations of the lmer, we also tried to test science as a random effect rather than a fixed effect. Again, there was a significant effect of explanation quality, an interaction effect between explanation quality and explanation level, but no significant effect of explanation level alone. The other interaction effect of condition and biology, and the fixed effect of psychology was also no longer statistically significant.
 
 ```{r echo=TRUE}
 lmert2 <- lmerTest::lmer(rating ~ condition + quality + condition:quality + (1 | science) + (1 | ID) + (1 + quality | item), data = data)
 
-tidy_lmert2 <- tidy(lmert2)
+summary(lmert2)
+# tidy_lmert2 <- tidy(lmert2)
 
 # Filter rows where p.value is less than 0.05
-filtered_lmert2 <- tidy_lmert2 |>  
-  filter(p.value < 0.05)
+# filtered_lmert2 <- tidy_lmert2 |>  
+#   filter(p.value < 0.05)
 
 # Display filtered results using kable
-kable(filtered_lmert2, digits = 3, caption = "Statistically significant terms in lmer at p<0.05 where science is random effect")
+# kable(filtered_lmert2, digits = 3, caption = "Statistically significant terms in lmer at p<0.05 where science is random effect")
 ```
 
 ```{r echo=TRUE}
 
 brm2 <- brm(rating ~ condition + quality + condition:quality + (1 | science) + (1 | ID) + (1 + quality | item), data = data)
 
-tidy_brm2 <- tidy(brm2)
+summary(brm2)
+# tidy_brm2 <- tidy(brm2)
 
 # Filter rows where p.value is less than 0.05
-filtered_brm2 <- tidy_brm2 |>  
-  filter(conf.low > 0 | conf.high < 0)
+# filtered_brm2 <- tidy_brm2 |>  
+#  filter(conf.low > 0 | conf.high < 0)
 
 # Display filtered results using kable
-kable(filtered_brm2, digits = 3, caption = "Statistically significant terms in brm at p<0.05 where science is random effect")
+# kable(filtered_brm2, digits = 3, caption = "Statistically significant terms in brm at p<0.05 where science is random effect")
 ```
 
 When the same model with science as a random effect was run with Bayesian modelling, the fixed effects of explanation quality, and interaction between explanation level and quality was statistically significant. 
@@ -570,7 +574,7 @@ kable(design_facets, caption = "Replication Taxonomy for various Design Facets",
 
 #### Replication of Results
 
-We did not manage to replicate the fixed effect of explanation level in the key test. In other words, we did not observe the seductive allure effect.
+*We did not manage to replicate the fixed effect of explanation level in the key test (_t_ = 1.57, _p_ = 0.12). In other words, we did not observe the seductive allure effect. This is consistent with the replication by Chuey (_p_ = 0.062), and in contrast with the original study, which observed a significant main effect of explanation level (_t_ = 2.23, _p_ < .05).* 
 
 We replicated secondary findings including the fixed effect of explanation quality (0.25), as well as the interaction effect between quality of explanation and explanation level (0.25). 
 
